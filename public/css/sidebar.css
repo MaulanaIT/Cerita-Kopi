@@ -1,0 +1,115 @@
+.cerita-kopi-logo {
+    height: 76px;
+}
+
+.icon {
+    text-align: center;
+    width: 48px;
+}
+
+@media (min-width: 762px) {
+    .navigation {
+        width: 80px !important;
+    }
+
+    .navigation.active {
+        width: 260px !important;
+    }
+
+    #main {
+        width: calc(100% - 80px);
+        transition: width 0.5s;
+    }
+
+    #main.active {
+        width: calc(100% - 260px);
+    }
+}
+
+.navigation {
+    box-sizing: initial;
+    overflow-x: hidden;
+    padding: 0;
+    transition: width 0.5s;
+    width: 0px;
+}
+
+.navigation.active {
+    width: 260px;
+}
+
+.navigation ul {
+    margin-top: 10px;
+    padding: 0;
+    transition: height 0.5s;
+}
+
+.navigation ul li {
+    align-items: center;
+    display: flex;
+    padding: 12px 0px;
+    list-style: none;
+    position: relative;
+}
+
+.navigation ul li.active {
+    background-color: white;
+    border-radius: 15px 0 0 15px;
+}
+
+.navigation ul li.active * {
+    color: #00091c !important;
+}
+
+.navigation ul li.active b:nth-child(1) {
+    background-color: white;
+    height: 15px;
+    position: absolute;
+    top: -15px;
+    width: 100%;
+}
+
+.navigation ul li.active b:nth-child(1)::before {
+    background-color: #00091c;
+    border-bottom-right-radius: 15px;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.navigation ul li.active b:nth-child(2) {
+    background-color: white;
+    height: 15px;
+    position: absolute;
+    bottom: -15px;
+    width: 100%;
+}
+
+.navigation ul li.active b:nth-child(2)::before {
+    background-color: #00091c;
+    border-top-right-radius: 15px;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.navigation ul li a .title {
+    padding-left: 18px;
+    padding-right: 18px;
+    position: absolute;
+}
+
+/* Dropdown Menu */
+.list {
+    cursor: pointer;
+}
+
+.list .sub-list {
+    display: none;
+}
