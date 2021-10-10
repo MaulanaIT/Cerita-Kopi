@@ -1,17 +1,19 @@
 @extends('layout')
 
 @section('main')
-<p class="fs-3 fw-bold m-0 text-secondary">Produk</p>
-<p class="fs-6 m-0 text-secondary">Master / <span class="text-dark">Produk</span></p>
+<p class="fs-3 fw-bold m-0 text-secondary">Penjualan</p>
+<p class="fs-6 m-0 text-secondary">Transaksi / <span class="text-dark">Penjualan</span></p>
 
 <div class="pt-4 row">
     <div class="col-12 col-lg-6 p-0 pe-lg-2">
         <div class="card">
             <div class="card-body shadow">
-                <p class="fw-bold fs-5 m-0 text-secondary">Tambah Data HPP Produk</p>
+                <p class="fw-bold fs-5 m-0 text-secondary">Tambah Penjualan</p>
                 <div class="mt-2">
                     <form action="/master/produk" method="POST">
                         @csrf
+                        <label for="tanggal" class="col-form-label">Tanggal</label>
+                        <input type="date" id="tanggal" name="tanggal" class="form-control" value={{$curDate}}>
                         <label for="nama-item" class="col-form-label">Nama Item</label>
                         <input type="text" id="nama-item" name="nama-item" class="form-control">
                         <div class="px-0 row">
@@ -51,7 +53,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-lg-6 mt-4 mt-lg-0 p-0 pe-lg-2">
+    <div class="col-12 col-lg-6 p-0 pe-lg-2">
         <div class="card">
             <div class="card-body shadow">
                 <p class="fw-bold fs-5 m-0 text-secondary">Kalkulator HPP</p>

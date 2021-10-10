@@ -10,13 +10,14 @@
             <div class="card-body shadow">
                 <p class="fw-bold fs-5 m-0 text-secondary">Tambah Data Bahan Baku</p>
                 <div class="mt-2">
-                    <form action="" method="POST">
+                    <form action="/master/bahan-baku/store" method="POST">
+                        @csrf
                         <label for="nama-item" class="col-form-label">Nama Item</label>
-                        <input type="text" id="nama-item" class="form-control">
+                        <input type="text" id="nama-item" name="nama-item" class="form-control">
                         <div class="row">
                             <div class="col-12 col-lg-4 px-0 pe-lg-2">
                                 <label for="jumlah-per-pack" class="col-form-label text-nowrap">Jumlah Per Pack</label>
-                                <input type="number" id="jumlah-per-pack" class="form-control">
+                                <input type="number" id="jumlah-per-pack" name="jumlah-per-pack" class="form-control">
                             </div>
                             <div class="col-12 col-lg-4 px-0 px-lg-2">
                                 <label for="satuan-per-pack" class="col-form-label text-nowrap">Satuan Per Pack</label>
@@ -29,7 +30,7 @@
                             </div>
                             <div class="col-12 col-lg-4 px-0 ps-lg-2">
                                 <label for="stok-minimal" class="col-form-label text-nowrap">Stok Minimal</label>
-                                <input type="number" id="stok-minimal" class="form-control">
+                                <input type="number" id="stok-minimal" name="stok-minimal" class="form-control">
                             </div>
                         </div>
                         <input type="submit" class="btn btn-sm btn-success mt-4 w-100" value="Simpan">

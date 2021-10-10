@@ -6,8 +6,8 @@
         </span>
     </div>
     <div class="ps-3">
-        <div class="col-form-label fw-bold text-secondary shadow">Menu</div>
         <ul>
+            <div class="col-form-label fw-bold text-secondary text-size-3 pb-0 shadow">Dashboard</div>
             <li class="list">
                 <!-- <b></b>
                 <b></b> -->
@@ -16,12 +16,13 @@
                     <span class="title">Dashboard</span>
                 </a>
             </li>
+            <div class="col-form-label fw-bold text-secondary text-size-3 pb-0 shadow">Master</div>
             <li class="list">
                 <!-- <b></b>
                 <b></b> -->
                 <a href="/master/bahan-baku" class="col fw-bold text-decoration-none text-white">
                     <i class="icon fas fa-server text-white"></i>
-                    <span class="title">Master</span>
+                    <span class="title">Bahan Baku</span>
                 </a>
             </li>
             <li class="list">
@@ -29,17 +30,27 @@
                 <b></b> -->
                 <a href="/master/produk" class="col fw-bold text-decoration-none text-white">
                     <i class="icon fas fa-credit-card text-white"></i>
-                    <span class="title">Transaksi</span>
+                    <span class="title">Produk</span>
+                </a>
+            </li>
+            <div class="col-form-label fw-bold text-secondary text-size-3 pb-0 shadow">Transaksi</div>
+            <li class="list">
+                <!-- <b></b>
+                <b></b> -->
+                <a href="/transaksi/pembelian" class="col fw-bold text-decoration-none text-white">
+                    <i class="icon fas fa-credit-card text-white"></i>
+                    <span class="title">Pembelian</span>
                 </a>
             </li>
             <li class="list">
                 <!-- <b></b>
                 <b></b> -->
-                <a href="#" class="col fw-bold text-decoration-none text-white">
+                <a href="/transaksi/penjualan" class="col fw-bold text-decoration-none text-white">
                     <i class="icon fas fa-file-alt text-white"></i>
-                    <span class="title">Laporan</span>
+                    <span class="title">Penjualan</span>
                 </a>
             </li>
+            <div class="col-form-label fw-bold text-secondary text-size-3 pb-0 shadow">Laporan</div>
         </ul>
     </div>
 </div>

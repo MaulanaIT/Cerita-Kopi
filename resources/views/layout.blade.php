@@ -47,12 +47,14 @@ $(document).ready(function() {
     for (let i = 0; i < list.length; i++) {
         if (<?php echo json_encode($page); ?> == "Dashboard")
             list[0].className = "active list";
-        else if (<?php echo json_encode($page); ?> == "Master")
+        else if (<?php echo json_encode($page); ?> == "Bahan Baku")
             list[1].className = "active list";
-        else if (<?php echo json_encode($page); ?> == "Transaksi")
+        else if (<?php echo json_encode($page); ?> == "Produk")
             list[2].className = "active list";
-        else if (<?php echo json_encode($page); ?> == "Laporan")
+        else if (<?php echo json_encode($page); ?> == "Pembelian")
             list[3].className = "active list";
+        else if (<?php echo json_encode($page); ?> == "Penjualan")
+            list[4].className = "active list";
 
         list[i].onclick = function(event) {
             let j = 0;
@@ -64,6 +66,10 @@ $(document).ready(function() {
             list[i].className = 'list active';
         }
     }
+    
+    $('.list > a').onclick(function() {
+        alert('Success');
+    })
 });
 
 function toggleNavigation() {
