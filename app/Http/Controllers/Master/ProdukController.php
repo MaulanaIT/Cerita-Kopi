@@ -12,7 +12,9 @@ class ProdukController extends Controller
         $page = "Produk";
         $title = "Cerita Kopi - Master";
 
-        return view ('master.produk', compact('page', 'title'));
+        $data_produk = ProdukModel::all();
+
+        return view ('master.produk', compact('data_produk', 'page', 'title'));
     }
 
     function store(Request $request) {

@@ -30,60 +30,32 @@
                             <input type="number" id="total-harga" name="total-harga" class="form-control">
                         </div>
                     </div>
-                    <button class="btn btn-sm btn-primary mt-4 w-100">Tambah</button>
+                    <button class="btn btn-primary mt-4 w-100">Tambah</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="p-0 pt-4 table-responsive">
-    <table class="table table-bordered table-striped table-hover">
-        <thead class="align-middle text-center">
-            <tr>
-                <th>No.</th>
-                <th>Nama</th>
-                <th>Jumlah</th>
-                <th>Satuan</th>
-                <th>Stok Minimal</th>
-            </tr>
-        </thead>
-        <tbody class="align-middle">
-            <tr>
-                <th class="text-center">1.</th>
-                <td>Coffee Blend (Essp)</td>
-                <td class="text-center">10</td>
-                <td class="text-center">Gr</td>
-                <td class="text-center">5</td>
-            </tr>
-            <tr>
-                <th class="text-center">2.</th>
-                <td>Water 1 (Essp)</td>
-                <td class="text-center">20</td>
-                <td class="text-center">Mltr</td>
-                <td class="text-center">8</td>
-            </tr>
-            <tr>
-                <th class="text-center">3.</th>
-                <td>Susu Low Fat</td>
-                <td class="text-center">5</td>
-                <td class="text-center">Ltr</td>
-                <td class="text-center">2</td>
-            </tr>
-            <tr>
-                <th class="text-center">4.</th>
-                <td>Botol + Stiker</td>
-                <td class="text-center">6</td>
-                <td class="text-center">Botol</td>
-                <td class="text-center">3</td>
-            </tr>
-            <tr>
-                <th class="text-center">5.</th>
-                <td>SKM</td>
-                <td class="text-center">15</td>
-                <td class="text-center">Gr</td>
-                <td class="text-center">6</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="col-12 col-lg-6 mt-4 mt-lg-0 p-0 pe-lg-2 table-responsive">
+        <table id="table-data" class="table table-bordered table-striped table-hover">
+            <thead class="align-middle text-center text-nowrap">
+                <tr>
+                    <th>No.</th>
+                    <th>Nama</th>
+                    <th>Harga</th>
+                    <th>Jumlah</th>
+                    <th>Total Harga</th>
+                </tr>
+            </thead>
+            <tbody class="align-middle">
+                <tr>
+                    <td class="d-none"></td>
+                    <td class="d-none"></td>
+                    <td class="d-none"></td>
+                    <td colspan="4" class="fw-bold text-center">Total </td>
+                    <td class="fw-bold text-end">Rp. 0,00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 @endsection

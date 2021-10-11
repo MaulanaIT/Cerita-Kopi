@@ -5,9 +5,9 @@
             <img src="{{asset('image/Title.png')}}" alt="Logo Cerita Kopi" height="36px">
         </span>
     </div>
-    <div class="ps-3">
+    <div class="overflow-auto ps-3">
         <ul>
-            <div class="col-form-label fw-bold text-secondary text-size-3 pb-0 shadow">Dashboard</div>
+            <div class="list-title">Dashboard</div>
             <li class="list">
                 <!-- <b></b>
                 <b></b> -->
@@ -16,7 +16,7 @@
                     <span class="title">Dashboard</span>
                 </a>
             </li>
-            <div class="col-form-label fw-bold text-secondary text-size-3 pb-0 shadow">Master</div>
+            <div class="list-title">Master</div>
             <li class="list">
                 <!-- <b></b>
                 <b></b> -->
@@ -33,7 +33,7 @@
                     <span class="title">Produk</span>
                 </a>
             </li>
-            <div class="col-form-label fw-bold text-secondary text-size-3 pb-0 shadow">Transaksi</div>
+            <div class="list-title">Transaksi</div>
             <li class="list">
                 <!-- <b></b>
                 <b></b> -->
@@ -50,7 +50,23 @@
                     <span class="title">Penjualan</span>
                 </a>
             </li>
-            <div class="col-form-label fw-bold text-secondary text-size-3 pb-0 shadow">Laporan</div>
+            <div class="list-title">Laporan</div>
+            <li class="list">
+                <!-- <b></b>
+                <b></b> -->
+                <a href="/laporan/pembelian" class="col fw-bold text-decoration-none text-white">
+                    <i class="icon fas fa-credit-card text-white"></i>
+                    <span class="title">Pembelian</span>
+                </a>
+            </li>
+            <li class="list">
+                <!-- <b></b>
+                <b></b> -->
+                <a href="/laporan/penjualan" class="col fw-bold text-decoration-none text-white">
+                    <i class="icon fas fa-file-alt text-white"></i>
+                    <span class="title">Penjualan</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

@@ -41,11 +41,15 @@
                                 <input type="number" id="satuan-per-pack" name="satuan-per-produk" class="form-control">
                             </div>
                         </div>
-                        <label for="harga-per-item-yang-dipakai" class="col-form-label">Harga Per Item Yang
-                            Dipakai</label>
-                        <input type="number" id="harga-per-item-yang-dipakai" name="harga-per-item" class="form-control w-50">
-                        <input type="submit" class="btn btn-sm btn-success mt-4 w-100" value="Tambah">
-                        <input type="button" class="btn btn-sm btn-danger mt-2 w-100" value="Batal">
+                        <div class="px-0 row">
+                            <div class="col-12 col-lg-6 px-0">
+                                <label for="harga-per-item-yang-dipakai" class="col-form-label">Harga Per Item Yang
+                                    Dipakai</label>
+                                <input type="number" id="harga-per-item-yang-dipakai" name="harga-per-item" class="form-control">
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-success mt-4 w-100" value="Tambah">
+                        <input type="button" class="btn btn-danger mt-2 w-100" value="Batal">
                     </form>
                 </div>
             </div>
@@ -87,52 +91,36 @@
     </div>
 </div>
 <div class="p-0 pt-4 table-responsive">
-    <table class="table table-bordered table-striped table-hover">
-        <thead class="align-middle text-center">
+    <table id="table-data" class="table table-bordered table-striped table-hover">
+        <thead class="align-middle text-center text-nowrap">
             <tr>
                 <th>No.</th>
-                <th>Nama</th>
-                <th>Jumlah</th>
-                <th>Satuan</th>
-                <th>Stok Minimal</th>
+                <th>Harga Beli</th>
+                <th>Jumlah Per Pack</th>
+                <th>Satuan Per Pack</th>
+                <th>Jumlah Dipakai Per Produk</th>
+                <th>Satuan Per Produk</th>
+                <th>Harga Per Item Yang Dipakai</th>
             </tr>
         </thead>
         <tbody class="align-middle">
-            <tr>
-                <th class="text-center">1.</th>
-                <td>Coffee Blend (Essp)</td>
-                <td class="text-center">10</td>
-                <td class="text-center">Gr</td>
-                <td class="text-center">5</td>
-            </tr>
-            <tr>
-                <th class="text-center">2.</th>
-                <td>Water 1 (Essp)</td>
-                <td class="text-center">20</td>
-                <td class="text-center">Mltr</td>
-                <td class="text-center">8</td>
-            </tr>
-            <tr>
-                <th class="text-center">3.</th>
-                <td>Susu Low Fat</td>
-                <td class="text-center">5</td>
-                <td class="text-center">Ltr</td>
-                <td class="text-center">2</td>
-            </tr>
-            <tr>
-                <th class="text-center">4.</th>
-                <td>Botol + Stiker</td>
-                <td class="text-center">6</td>
-                <td class="text-center">Botol</td>
-                <td class="text-center">3</td>
-            </tr>
-            <tr>
-                <th class="text-center">5.</th>
-                <td>SKM</td>
-                <td class="text-center">15</td>
-                <td class="text-center">Gr</td>
-                <td class="text-center">6</td>
-            </tr>
+            @if (count($data_produk) > 0)
+                @php
+                    $i = 0;
+                @endphp
+                @foreach($data_produk as $data)
+                    <tr>
+                        <td>{{++$i}}</td>
+                        <td>{{$data->nama}}</td>
+                        <td>{{$data->harga_beli}}</td>
+                        <td>{{$data->jumlah_per_pack}}</td>
+                        <td>{{$data->satuan_per_pack}}</td>
+                        <td>{{$data->jumlah_dipakai_per_produk}}</td>
+                        <td>{{$data->satuan_per_produk}}</td>
+                        <td>{{$data->harga_per_item}}</td>
+                    </tr>
+                @endforeach
+            @endif
         </tbody>
     </table>
 </div>

@@ -10,14 +10,15 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "axios": "^0.21",
-        "browser-sync": "^2.27.5",
-        "browser-sync-webpack-plugin": "^2.3.0",
+        "axios": "^0.22.0",
         "laravel-mix": "^6.0.31",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14"
     },
     "dependencies": {
-        "watch": "^1.0.2"
+        "browser-sync": "^2.27.5",
+        "browser-sync-webpack-plugin": "^2.3.0",
+        "mix": "0.0.1",
+        "npm-watch": "^0.11.0"
     }
 }

@@ -104,8 +104,17 @@
 
 /* Dropdown Menu */
 
-.list {
+.list a {
     cursor: pointer;
+    white-space: nowrap;
+}
+
+.list-title {
+    color: gray;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: 12px;
 }
 
 .list .sub-list {

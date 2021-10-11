@@ -5,9 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
+
+    <link rel="stylesheet" href="{{asset('DataTables/datatables.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/sidebar.css')}}">
     <link rel="stylesheet" href="{{asset('css/header.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
@@ -38,12 +42,21 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
+
+    <script src="{{asset('DataTables/datatables.min.js')}}"></script>
 </body>
 
 <script>
 let list = document.querySelectorAll('.list');
 
 $(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     for (let i = 0; i < list.length; i++) {
         if (<?php echo json_encode($page); ?> == "Dashboard")
             list[0].className = "active list";
@@ -55,8 +68,12 @@ $(document).ready(function() {
             list[3].className = "active list";
         else if (<?php echo json_encode($page); ?> == "Penjualan")
             list[4].className = "active list";
+        else if (<?php echo json_encode($page); ?> == "Laporan Pembelian")
+            list[5].className = "active list";
+        else if (<?php echo json_encode($page); ?> == "Laporan Penjualan")
+            list[6].className = "active list";
 
-        list[i].onclick = function(event) {
+        list[i].querySelector('a').onclick = function(event) {
             let j = 0;
 
             while (j < list.length) {
@@ -66,23 +83,45 @@ $(document).ready(function() {
             list[i].className = 'list active';
         }
     }
-    
-    $('.list > a').onclick(function() {
-        alert('Success');
-    })
+    let listTitle = document.querySelectorAll('.list-title');
+
+    if (window.innerWidth < 762) {
+        document.getElementById('sidebar').classList.remove('active');
+        document.getElementById('toggle').classList.remove('active');
+        document.getElementById('content').classList.remove('active');
+        document.getElementById('main').classList.remove('active');
+
+        for (let i = 0; i < listTitle.length; i++) {
+            listTitle[i].className = "d-none list-title";
+        }
+    }
+
+    $("#table-data").DataTable();
+
+    $("input[type='number']").val(0);
 });
 
 function toggleNavigation() {
+    let listTitle = document.querySelectorAll('.list-title');
+
     if (document.getElementById('sidebar').classList.contains('active')) {
         document.getElementById('sidebar').classList.remove('active');
         document.getElementById('toggle').classList.remove('active');
         document.getElementById('content').classList.remove('active');
         document.getElementById('main').classList.remove('active');
+
+        for (let i = 0; i < listTitle.length; i++) {
+            listTitle[i].className = "d-none list-title";
+        }
     } else {
         document.getElementById('sidebar').classList.add('active');
         document.getElementById('toggle').classList.add('active');
         document.getElementById('content').classList.add('active');
         document.getElementById('main').classList.add('active');
+
+        for (let i = 0; i < listTitle.length; i++) {
+            listTitle[i].className = "list-title";
+        }
     }
 }
 </script>
