@@ -17,11 +17,19 @@ class DaftarPembayaranImport implements ToModel
 
     public function model(array $row)
     {
-        PenjualanDumModel::where('id', ++$this->index)->update([
-            'jenis_pembayaran' => $row[1],
-            'jumlah_pembayaran' => $row[2],
-            'jenis_kartu' => $row[3],
-            'tanggal' => explode('T', $row[0])[0]
-        ]);
+        if (isset($row[3])) {
+            PenjualanDumModel::where('id', ++$this->index)->update([
+                'jenis_pembayaran' => $row[1],
+                'jumlah_pembayaran' => $row[2],
+                'jenis_kartu' => $row[3],
+                'tanggal' => explode('T', $row[0])[0]
+            ]);
+        } else {
+            PenjualanDumModel::where('id', ++$this->index)->update([
+                'jenis_pembayaran' => $row[1],
+                'jumlah_pembayaran' => $row[2],
+                'tanggal' => explode('T', $row[0])[0]
+            ]);
+        }
     }
 }

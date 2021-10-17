@@ -56,6 +56,7 @@ Route::group(['prefix' => 'transaksi'], function() {
     Route::group(['prefix' => 'penjualan'], function() {
         Route::get('/', [PenjualanController::class, 'index']);
         Route::post('/import', [PenjualanController::class, 'import']);
+        Route::post('/save', [PenjualanController::class, 'save']);
         Route::post('/store', [PenjualanController::class, 'store']);
     });
 });

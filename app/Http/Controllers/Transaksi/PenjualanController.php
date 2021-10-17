@@ -22,7 +22,9 @@ class PenjualanController extends Controller
 
         $data_produk = ProdukModel::select('*')->orderBy('nama')->get();
 
-        return view('transaksi.penjualan', compact('curDate', 'data_produk', 'page', 'title'));
+        $data_penjualan_detail = PenjualanDumModel::orderBy('nama_produk')->get();
+
+        return view('transaksi.penjualan', compact('curDate', 'data_penjualan_detail', 'data_produk', 'page', 'title'));
     }
 
     function import(Request $request) {
@@ -35,6 +37,10 @@ class PenjualanController extends Controller
         Excel::import(new DaftarProdukImport, $request->file('daftar-produk')->store('temp'));
         Excel::import(new DaftarPembayaranImport, $request->file('daftar-pembayaran')->store('temp'));
 
+        return back();
+    }
+
+    function save() {
         $data_penjualan = PenjualanDumModel::all();
 
         foreach ($data_penjualan as $data) {
@@ -52,6 +58,6 @@ class PenjualanController extends Controller
 
         PenjualanDumModel::truncate();
 
-        return back();
+        return response()->json(['code' => 200]);
     }
 }
