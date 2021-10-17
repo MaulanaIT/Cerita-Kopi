@@ -35,10 +35,10 @@ class PenjualanController extends Controller
         $data_penjualan_produk = PenjualanProdukDumModel::all();
 
         if (count($data_penjualan_pembayaran) > 0) 
-        PenjualanProdukDumModel::truncate();
+            PenjualanPembayaranDumModel::truncate();
 
         if (count($data_penjualan_produk) > 0) 
-            PenjualanPembayaranDumModel::truncate();
+            PenjualanProdukDumModel::truncate();
         
 
         Excel::import(new DaftarProdukImport, $request->file('daftar-produk')->store('temp'));

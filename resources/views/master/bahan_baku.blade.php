@@ -110,7 +110,7 @@
                     if (response.code == 200) {
                         location.reload();
                     } else if (response.code == 406) {
-                        alert(`{{Session::get('failed')}}`);
+                        alert(response.status);
                     }
                 }
             });

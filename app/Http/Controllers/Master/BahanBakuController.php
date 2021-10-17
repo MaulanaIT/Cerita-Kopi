@@ -35,14 +35,14 @@ class BahanBakuController extends Controller
                 'stok' => 0
             ]);
 
-            Session::flash('success', 'Data Berhasil Ditambahkan');
-
-            return response()->json(['code' => 200]);
+            $code = 200;
+            $status = 'Data Berhasil Ditambahkan';
         } else {
-            Session::flash('failed', 'Kode Item Sudah Digunakan');
-
-            return response()->json(['code' => 406]);
+            $code = 406;
+            $status = 'Kode Item Sudah Digunakan';
         }
+
+        return response()->json(['code' => $code, 'status' => $status]);
     }
 
     function selectItem($nama) {
