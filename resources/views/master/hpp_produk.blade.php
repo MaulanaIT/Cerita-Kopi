@@ -9,13 +9,13 @@
             <div class="card">
                 <div class="card-body shadow">
                     <p class="fw-bold fs-5 m-0 text-secondary">Tambah Data HPP Produk</p>
-                    <div class="mt-2">
+                    <form class="mt-2">
                         <label for="kode-produk" class="col-form-label">Kode Produk</label>
-                        <input type="text" id="kode-produk" name="kode-produk" class="form-control">
+                        <input type="text" id="kode-produk" name="kode-produk" class="form-control" required>
                         <label for="nama-produk" class="col-form-label">Nama Produk</label>
-                        <input type="text" id="nama-produk" name="nama-produk" class="form-control">
+                        <input type="text" id="nama-produk" name="nama-produk" class="form-control" required>
                         <label for="nama-item" class="col-form-label">Nama Item</label>
-                        <select name="nama-item" id="nama-item" class="form-select" onchange="selectItem(this.id)">
+                        <select name="nama-item" id="nama-item" class="form-select" onchange="selectItem(this.id)" required>
                             <option value="">-- Pilih Item --</option>
                             @foreach ($data_bahan_baku as $data)
                                 <option value="{{ $data->nama }}">{{ $data->nama }}</option>
@@ -24,28 +24,28 @@
                         <div class="px-0 row">
                             <div class="col-12 col-lg-4 px-0 pe-0 pe-lg-2">
                                 <label for="harga-item" class="col-form-label">Harga Item</label>
-                                <input type="number" id="harga-item" name="harga-item" class="form-control" readonly>
+                                <input type="number" id="harga-item" name="harga-item" class="form-control" readonly required>
                             </div>
                             <div class="col-12 col-lg-4 px-0 px-lg-2">
                                 <label for="satuan-per-pack" class="col-form-label">Satuan Per Pack</label>
-                                <input type="text" id="satuan-per-pack" name="satuan-per-pack" class="form-control" value="Satuan Item"
-                                    readonly>
+                                <input type="text" id="satuan-per-pack" name="satuan-per-pack" class="form-control"
+                                    value="Satuan Item" readonly required>
                             </div>
                             <div class="col-12 col-lg-4 px-0 ps-0 ps-lg-2">
                                 <label for="jumlah-per-pack" class="col-form-label">Jumlah Per Pack</label>
                                 <input type="number" id="jumlah-per-pack" name="jumlah-per-pack" class="form-control"
-                                    readonly>
+                                    readonly required>
                             </div>
                         </div>
                         <div class="px-0 row">
                             <div class="col-12 col-lg-4 px-0 pe-0 pe-lg-2">
                                 <label for="harga-item-per-unit" class="col-form-label">Harga Item Per Unit</label>
                                 <input type="number" id="harga-item-per-unit" name="harga-item-per-unit"
-                                    class="form-control" readonly>
+                                    class="form-control" readonly required>
                             </div>
                             <div class="col-12 col-lg-4 px-0 px-lg-2">
                                 <label for="satuan-dipakai" class="col-form-label">Satuan Dipakai</label>
-                                <select name="satuan-dipakai" id="satuan-dipakai" class="form-select">
+                                <select name="satuan-dipakai" id="satuan-dipakai" class="form-select" required>
                                     @foreach ($data_bahan_baku_satuan as $data)
                                         <option value="{{ $data->nama }}">{{ $data->nama }}</option>
                                     @endforeach
@@ -53,12 +53,13 @@
                             </div>
                             <div class="col-12 col-lg-4 px-0 ps-0 ps-lg-2">
                                 <label for="jumlah-dipakai" class="col-form-label">Jumlah Dipakai</label>
-                                <input type="number" id="jumlah-dipakai" name="jumlah-dipakai" class="form-control" onchange="kalkulasiHargaPerItem()">
+                                <input type="number" id="jumlah-dipakai" name="jumlah-dipakai" class="form-control"
+                                    onchange="kalkulasiHargaPerItem()" required>
                             </div>
                         </div>
                         <button class="btn btn-primary mt-4 w-100" onclick="tambahItem()">Tambah</button>
-                        <button class="btn btn-danger mt-2 w-100">Bersihkan</button>
-                    </div>
+                        <input class="btn btn-danger mt-2 w-100" value="Bersihkan">
+                    </form>
                 </div>
             </div>
         </div>
@@ -67,35 +68,34 @@
                 <div class="card-body shadow">
                     <p class="fw-bold fs-5 m-0 text-secondary">Kalkulator HPP</p>
                     <div class="mt-2">
-                        <form action="" method="POST">
-                            <div class="row">
-                                <div class="col-12 col-lg-6 px-0 pe-lg-2">
-                                    <label for="target-hpp" class="col-form-label">Target HPP</label>
-                                    <div class="input-group">
-                                        <input type="number" id="target-hpp" class="form-control" onchange="kalkulasiHpp()">
-                                        <span class="input-group-text">%</span>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-6 px-0 ps-lg-2">
-                                    <label for="target-harga-jual" class="col-form-label text-nowrap">Target Harga
-                                        Jual</label>
-                                    <input type="number" id="target-harga-jual" class="form-control" readonly>
+                        <div class="row">
+                            <div class="col-12 col-lg-6 px-0 pe-lg-2">
+                                <label for="target-hpp" class="col-form-label">Target HPP</label>
+                                <div class="input-group">
+                                    <input type="number" id="target-hpp" class="form-control" onchange="kalkulasiHpp()">
+                                    <span class="input-group-text">%</span>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12 col-lg-6 px-0 pe-lg-2">
-                                    <label for="hpp-aktual" class="col-form-label">HPP Aktual</label>
-                                    <input type="number" id="hpp-aktual" class="form-control" onchange="kalkulasiLaba()" readonly>
-                                </div>
-                                <div class="col-12 col-lg-6 px-0 ps-lg-2">
-                                    <label for="harga-jual-aktual" class="col-form-label text-nowrap">Harga Jual
-                                        Aktual</label>
-                                    <input type="number" id="harga-jual-aktual" class="form-control"
-                                        onchange="kalkulasiLaba()">
-                                </div>
+                            <div class="col-12 col-lg-6 px-0 ps-lg-2">
+                                <label for="target-harga-jual" class="col-form-label text-nowrap">Target Harga
+                                    Jual</label>
+                                <input type="number" id="target-harga-jual" class="form-control" readonly>
                             </div>
-                            <p id="laba-produk" class="col-form-label text-end py-4">Laba Produk : <span>Rp. 0,00</span></p>
-                        </form>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-lg-6 px-0 pe-lg-2">
+                                <label for="hpp-aktual" class="col-form-label">HPP Aktual</label>
+                                <input type="number" id="hpp-aktual" class="form-control" onchange="kalkulasiLaba()"
+                                    readonly>
+                            </div>
+                            <div class="col-12 col-lg-6 px-0 ps-lg-2">
+                                <label for="harga-jual-aktual" class="col-form-label text-nowrap">Harga Jual
+                                    Aktual</label>
+                                <input type="number" id="harga-jual-aktual" class="form-control"
+                                    onchange="kalkulasiLaba()">
+                            </div>
+                        </div>
+                        <p id="laba-produk" class="col-form-label text-end py-4">Laba Produk : <span>Rp. 0,00</span></p>
                     </div>
                 </div>
             </div>
@@ -220,12 +220,15 @@
         }
 
         function kalkulasiHpp() {
-            $('#target-harga-jual').val(parseInt(100 / parseFloat($('#target-hpp').val()) * parseFloat($('#hpp-aktual').val())));
-            $('#harga-jual-aktual').val(parseInt(100 / parseFloat($('#target-hpp').val()) * parseFloat($('#hpp-aktual').val())));
+            $('#target-harga-jual').val(parseInt(100 / parseFloat($('#target-hpp').val()) * parseFloat($('#hpp-aktual')
+            .val())));
+            $('#harga-jual-aktual').val(parseInt(100 / parseFloat($('#target-hpp').val()) * parseFloat($('#hpp-aktual')
+            .val())));
         }
 
         function kalkulasiHargaPerItem() {
-            $('#harga-item-per-unit').val(parseInt($('#jumlah-dipakai').val()) / parseInt($('#jumlah-per-pack').val()) * parseInt($('#harga-item').val()));
+            $('#harga-item-per-unit').val(parseInt($('#jumlah-dipakai').val()) / parseInt($('#jumlah-per-pack').val()) *
+                parseInt($('#harga-item').val()));
         }
 
         function kalkulasiLaba() {

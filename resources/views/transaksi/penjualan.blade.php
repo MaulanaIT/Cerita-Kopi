@@ -14,12 +14,12 @@
                         <div class="px-0 row">
                             <p class="col-auto col-form-label m-0 px-0 text-secondary">Upload Daftar Produk</p>
                             <input type="file" id="daftar-produk" name="daftar-produk" class="form-control"
-                                accept=".csv, .xls, .xlsx">
+                                accept=".csv, .xls, .xlsx" required>
                         </div>
                         <div class="px-0 pt-2 row">
                             <p class="col-auto col-form-label m-0 px-0 text-secondary">Upload Daftar Pembayaran</p>
                             <input type="file" id="daftar-pembayaran" name="daftar-pembayaran" class="form-control"
-                                accept=".csv, .xls, .xlsx">
+                                accept=".csv, .xls, .xlsx" required>
                         </div>
                         <button type="submit" class="btn btn-success mt-4 w-100">Unggah</button>
                     </form>

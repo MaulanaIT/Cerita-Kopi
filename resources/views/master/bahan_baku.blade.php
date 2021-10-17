@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-body shadow">
                     <p class="fw-bold fs-5 m-0 text-secondary">Tambah Data Bahan Baku</p>
-                    <div class="mt-2">
+                    <form class="mt-2">
                         <label for="kode-item" class="col-form-label">Kode Item</label>
                         <input type="text" id="kode-item" name="kode-item" class="form-control" maxlength="20" required>
                         <label for="nama-item" class="col-form-label">Nama Item</label>
@@ -39,8 +39,8 @@
                             </div>
                         </div>
                         <button class="btn btn-success mt-2 w-100" onclick="simpanData()">Simpan</button>
-                        <button class="btn btn-danger mt-2 w-100" onclick="clearForm()">Bersihkan</button>
-                    </div>
+                        <input class="btn btn-danger mt-2 w-100" value="Bersihkan" onclick="clearForm()">
+                    </form>
                 </div>
             </div>
         </div>
