@@ -12,14 +12,14 @@
         width: 80px !important;
     }
     .navigation.active {
-        width: 260px !important;
+        width: 300px !important;
     }
     #main {
         width: calc(100% - 80px);
         transition: width 0.3s;
     }
     #main.active {
-        width: calc(100% - 260px);
+        width: calc(100% - 300px);
     }
 }
 
@@ -32,7 +32,7 @@
 }
 
 .navigation.active {
-    width: 260px;
+    width: 300px;
 }
 
 .navigation ul {

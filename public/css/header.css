@@ -6,16 +6,16 @@
 
 .toggle-menu {
     width: 48px;
-    transition: width 0.5s;
+    transition: width 0.3s;
 }
 
 .toggle-menu.active {
-    width: 308px !important;
+    width: 348px !important;
 }
 
 @media (min-width: 762px) {
     .toggle-menu {
         width: 128px !important;
-        transition: width 0.5s;
+        transition: width 0.3s;
     }
 }

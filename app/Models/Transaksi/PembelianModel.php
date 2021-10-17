@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Models\Master;
+namespace App\Models\Transaksi;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProdukModel extends Model
+class PembelianModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'produk';
+    protected $table = 'pembelian';
 
     protected $fillable = [
-        'kode',
-        'nama',
-        'hpp'
+        'nomor',
+        'total_harga',
+        'tanggal'
     ];
 }

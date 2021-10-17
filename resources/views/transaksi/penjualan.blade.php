@@ -8,54 +8,45 @@
     <div class="col-12 col-lg-6 p-0 pe-lg-2">
         <div class="card">
             <div class="card-body shadow">
-                <p class="fw-bold fs-5 m-0 text-secondary">Tambah Penjualan</p>
-                <div class="mt-2">
-                    <div class="px-0 row">
-                        <label for="tanggal" class="col-form-label">Tanggal</label>
-                        <input type="date" id="tanggal" name="tanggal" class="form-control" value={{$curDate}}>
-                    </div>
-                    <label for="nama-item" class="col-form-label">Nama Item</label>
-                    <input type="text" id="nama-item" name="nama-item" class="form-control">
-                    <div class="row">
-                        <div class="col-12 col-lg-4 px-0 pe-lg-2">
-                            <label for="harga" class="col-form-label">Harga</label>
-                            <input type="number" id="harga" name="harga" class="form-control">
-                        </div>
-                        <div class="col-12 col-lg-4 px-0 px-lg-2">
-                            <label for="jumlah" class="col-form-label text-nowrap">Jumlah</label>
-                            <input type="number" id="jumlah" name="jumlah" class="form-control">
-                        </div>
-                        <div class="col-12 col-lg-4 px-0 ps-lg-2">
-                            <label for="total-harga" class="col-form-label text-nowrap">Total Harga</label>
-                            <input type="number" id="total-harga" name="total-harga" class="form-control">
-                        </div>
-                    </div>
-                    <button class="btn btn-primary mt-4 w-100">Tambah</button>
+                <p class="col-form-label fw-bold fs-5 m-0 px-0 text-secondary">Tambah Penjualan</p>
+                <div class="px-0 row">
+                    <p class="col-auto col-form-label m-0 px-0 text-secondary">Upload Daftar Item</p>
+                    <button class="btn btn-success col-auto ms-auto px-3"><i class="fas fa-file-import"></i>&ensp;Excel</button>
+                </div>
+                <div class="px-0 pt-2 row">
+                    <p class="col-auto col-form-label m-0 px-0 text-secondary">Upload Daftar Pembayaran</p>
+                    <button class="btn btn-success col-auto ms-auto px-3"><i class="fas fa-file-import"></i>&ensp;Excel</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-12 col-lg-6 mt-4 mt-lg-0 p-0 pe-lg-2 table-responsive">
-        <table id="table-data" class="table table-bordered table-striped table-hover">
-            <thead class="align-middle text-center text-nowrap">
-                <tr>
-                    <th>No.</th>
-                    <th>Nama</th>
-                    <th>Harga</th>
-                    <th>Jumlah</th>
-                    <th>Total Harga</th>
-                </tr>
-            </thead>
-            <tbody class="align-middle">
-                <tr>
-                    <td class="d-none"></td>
-                    <td class="d-none"></td>
-                    <td class="d-none"></td>
-                    <td colspan="4" class="fw-bold text-center">Total </td>
-                    <td class="fw-bold text-end">Rp. 0,00</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+</div>
+
+<div class="pt-4 table-responsive">
+    <table id="table-data" class="table table-bordered table-striped table-hover">
+        <thead class="align-middle text-center text-nowrap">
+            <tr>
+                <th>No.</th>
+                <th>Tanggal</th>
+                <th>Nama</th>
+                <th>Harga</th>
+                <th>Jumlah</th>
+                <th>Jenis Pembayaran</th>
+                <th>Total Harga</th>
+            </tr>
+        </thead>
+        <tbody class="align-middle">
+            <tr>
+                <td class=""></td>
+                <td class=""></td>
+                <td class=""></td>
+                <td class=""></td>
+                <td class="fw-bold text-center">Total </td>
+                <td>Shopeepay</td>
+                <td class="fw-bold text-end">Rp. 0,00</td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-success my-4 w-100">Simpan</button>
 </div>
 @endsection

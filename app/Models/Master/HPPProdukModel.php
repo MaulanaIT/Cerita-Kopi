@@ -5,18 +5,19 @@ namespace App\Models\Master;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BahanBakuModel extends Model
+class HPPProdukModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'bahan_baku';
+    protected $table = 'produk_hpp';
 
     protected $fillable = [
-        'kode',
         'nama',
-        'harga',
+        'harga_beli',
         'jumlah_per_pack',
         'satuan_per_pack',
-        'stok_minimal',
+        'jumlah_dipakai_per_produk',
+        'satuan_per_produk',
+        'harga_per_item'
     ];
 }

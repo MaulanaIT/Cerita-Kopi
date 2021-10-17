@@ -28,9 +28,25 @@
             <li class="list">
                 <!-- <b></b>
                 <b></b> -->
+                <a href="/master/persediaan-bahan-baku" class="col fw-bold text-decoration-none text-white">
+                    <i class="icon fas fa-server text-white"></i>
+                    <span class="title">Persediaan Bahan Baku</span>
+                </a>
+            </li>
+            <li class="list">
+                <!-- <b></b>
+                <b></b> -->
                 <a href="/master/produk" class="col fw-bold text-decoration-none text-white">
                     <i class="icon fas fa-credit-card text-white"></i>
                     <span class="title">Produk</span>
+                </a>
+            </li>
+            <li class="list">
+                <!-- <b></b>
+                <b></b> -->
+                <a href="/master/hpp-produk" class="col fw-bold text-decoration-none text-white">
+                    <i class="icon fas fa-credit-card text-white"></i>
+                    <span class="title">HPP Produk</span>
                 </a>
             </li>
             <div class="list-title">Transaksi</div>
