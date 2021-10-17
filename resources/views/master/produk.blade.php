@@ -12,6 +12,7 @@
                 <th>Kode</th>
                 <th>Nama</th>
                 <th>HPP</th>
+                <th>Harga Jual</th>
             </tr>
         </thead>
         <tbody class="align-middle">
@@ -22,12 +23,14 @@
                 @foreach($data_produk as $data)
                     @php
                         $hpp = number_format($data->hpp, 2, ',', '.');
+                        $harga_jual = number_format($data->harga_jual, 2, ',', '.');
                     @endphp
                     <tr>
                         <td class="text-center">{{++$i}}.</td>
                         <td>{{$data->kode}}</td>
                         <td>{{$data->nama}}</td>
                         <td class="text-end">Rp. {{$hpp}}</td>
+                        <td class="text-end">Rp. {{$harga_jual}}</td>
                     </tr>
                 @endforeach
             @endif

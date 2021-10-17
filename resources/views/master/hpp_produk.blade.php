@@ -194,6 +194,7 @@
                     kode: $('#kode-produk').val(),
                     nama: $('#nama-produk').val(),
                     hpp: $('#hpp-aktual').val(),
+                    harga_jual: $('#harga-jual-aktual').val(),
                     _token: $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(response) {
@@ -219,11 +220,12 @@
         }
 
         function kalkulasiHpp() {
-            $('#target-harga-jual').val(parseInt((parseFloat($('#target-hpp').val()) + 100) / 100 * parseFloat($('#hpp-aktual').val())));
+            $('#target-harga-jual').val(parseInt(100 / parseFloat($('#target-hpp').val()) * parseFloat($('#hpp-aktual').val())));
+            $('#harga-jual-aktual').val(parseInt(100 / parseFloat($('#target-hpp').val()) * parseFloat($('#hpp-aktual').val())));
         }
 
         function kalkulasiHargaPerItem() {
-            $('#harga-item-per-unit').val(parseInt($('#jumlah-dipakai').va()) / parseInt($('#jumlah-per-pack').val()) * parseInt($('#harga-item')));
+            $('#harga-item-per-unit').val(parseInt($('#jumlah-dipakai').val()) / parseInt($('#jumlah-per-pack').val()) * parseInt($('#harga-item').val()));
         }
 
         function kalkulasiLaba() {

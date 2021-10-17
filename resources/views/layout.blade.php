@@ -154,6 +154,15 @@ function hargaFormat(harga) {
 
     return 'Rp. ' + ribuan + ',00';
 }
+
+function dateFormat(date) {
+    let args = date.split('-');
+    let year = args[0];
+    let month = args[1];
+    let day = args[2];
+
+    return day + '-' + month + '-' + year;
+}
 </script>
 
 @yield('script')

@@ -15,7 +15,7 @@
                     <th>Stok Minimal</th>
                     <th>Stok Sesungguhnya</th>
                     <th>Tanggal Expired</th>
-                    <td>Opsi</td>
+                    <th>Opsi</th>
                 </tr>
             </thead>
             <tbody class="align-middle">
@@ -78,17 +78,6 @@
         }
 
         function terapkanData(kodeItem) {
-            // $('#edit-stok-minimal-' + kodeItem).addClass('d-none');
-            // $('#edit-stok-' + kodeItem).addClass('d-none');
-            // $('#edit-tanggal-expired-' + kodeItem).addClass('d-none');
-
-            // $('#stok-minimal-' + kodeItem).removeClass('d-none');
-            // $('#stok-' + kodeItem).removeClass('d-none');
-            // $('#tanggal-expired-' + kodeItem).removeClass('d-none');
-
-            // $('#ubah-' + kodeItem).removeClass('d-none');
-            // $('#terapkan-' + kodeItem).addClass('d-none');
-
             $.ajax({
                 url: '/master/persediaan-bahan-baku/update/',
                 type: 'POST',
@@ -100,7 +89,20 @@
                 },
                 success: function(response) {
                     if (response.code == 200) {
-                        location.reload();
+                        $('#stok-minimal-' + kodeItem).html($('#edit-stok-minimal-' + kodeItem).val());
+                        $('#stok-' + kodeItem).html($('#edit-stok-' + kodeItem).val());
+                        $('#tanggal-expired-' + kodeItem).html(dateFormat($('#edit-tanggal-expired-' + kodeItem).val()));
+
+                        $('#edit-stok-minimal-' + kodeItem).addClass('d-none');
+                        $('#edit-stok-' + kodeItem).addClass('d-none');
+                        $('#edit-tanggal-expired-' + kodeItem).addClass('d-none');
+
+                        $('#stok-minimal-' + kodeItem).removeClass('d-none');
+                        $('#stok-' + kodeItem).removeClass('d-none');
+                        $('#tanggal-expired-' + kodeItem).removeClass('d-none');
+
+                        $('#ubah-' + kodeItem).removeClass('d-none');
+                        $('#terapkan-' + kodeItem).addClass('d-none');
                     }
                 }
             })

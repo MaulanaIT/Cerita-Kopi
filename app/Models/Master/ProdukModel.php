@@ -14,6 +14,7 @@ class ProdukModel extends Model
     protected $fillable = [
         'kode',
         'nama',
-        'hpp'
+        'hpp',
+        'harga_jual'
     ];
 }

@@ -32,7 +32,8 @@ class HPPProdukController extends Controller
         $insert = ProdukModel::create([
             'kode' => $request->input('kode'),
             'nama' => $request->input('nama'), 
-            'hpp' => $request->input('hpp')
+            'hpp' => $request->input('hpp'),
+            'harga_jual' => $request->input('harga_jual')
         ]);
 
         return response()->json(['code' => 200]);
