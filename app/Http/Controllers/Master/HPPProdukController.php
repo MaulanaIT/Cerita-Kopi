@@ -9,6 +9,7 @@ use App\Models\Master\HPPProdukModel;
 use App\Models\Master\ProdukDetailModel;
 use App\Models\Master\ProdukModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HPPProdukController extends Controller
 {
@@ -18,6 +19,8 @@ class HPPProdukController extends Controller
 
         $data_bahan_baku = BahanBakuModel::select('*')->orderBy('nama')->get();
         $data_bahan_baku_satuan = BahanBakuSatuanModel::select('*')->orderBy('nama')->get();
+
+        ProdukDetailModel::select('*')->whereNotIn('kode', ProdukModel::select(DB::raw('DISTINCT kode'))->get())->delete();
 
         return view ('master.hpp_produk', compact('data_bahan_baku', 'data_bahan_baku_satuan', 'page', 'title'));
     }

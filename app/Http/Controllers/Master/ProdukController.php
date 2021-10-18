@@ -3,12 +3,7 @@
 namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
-use App\Models\Master\BahanBakuModel;
-use App\Models\Master\BahanBakuSatuanModel;
-use App\Models\Master\ProdukDetailController;
-use App\Models\Master\ProdukDetailModel;
 use App\Models\Master\ProdukModel;
-use Illuminate\Http\Request;
 
 class ProdukController extends Controller
 {
