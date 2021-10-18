@@ -18,5 +18,7 @@ class BahanBakuModel extends Model
         'jumlah_per_pack',
         'satuan_per_pack',
         'stok_minimal',
+        'stok',
+        'tanggal_expired'
     ];
 }

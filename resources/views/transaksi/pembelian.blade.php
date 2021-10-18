@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-body shadow">
                     <p class="fw-bold fs-5 m-0 text-secondary">Tambah Pembelian</p>
-                    <form class="mt-2">
+                    <div class="mt-2">
                         <div class="px-0 row">
                             <div class="col-12 col-lg-4 px-0">
                                 <label for="tanggal" class="col-form-label">Tanggal</label>
@@ -54,7 +54,7 @@
                             min={{ $curDate }} value={{ $curDate }}>
                         <button class="btn btn-primary mt-4 w-100" onclick="tambahData()">Tambah</button>
                         <input class="btn btn-danger mt-2 w-100" value="Bersihkan" onclick="clearForm()">
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
