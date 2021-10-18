@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-body shadow">
                     <p class="fw-bold fs-5 m-0 text-secondary">Tambah Data Bahan Baku</p>
-                    <form class="mt-2">
+                    <div class="mt-2">
                         <label for="kode-item" class="col-form-label">Kode Item</label>
                         <input type="text" id="kode-item" name="kode-item" class="form-control" maxlength="20" required>
                         <label for="nama-item" class="col-form-label">Nama Item</label>
@@ -40,7 +40,7 @@
                         </div>
                         <button class="btn btn-success mt-2 w-100" onclick="simpanData()">Simpan</button>
                         <input class="btn btn-danger mt-2 w-100" value="Bersihkan" onclick="clearForm()">
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,8 +52,8 @@
                         <th>Kode</th>
                         <th>Nama</th>
                         <th>Harga</th>
-                        <th>Jumlah</th>
-                        <th>Satuan</th>
+                        <th>Jumlah Per Pack</th>
+                        <th>Satuan Per Pack</th>
                         <th>Stok Minimal</th>
                         <th>Stok</th>
                         <th>Tanggal Expired</th>
@@ -101,9 +101,9 @@
                 data: {
                     kode: $('#kode-item').val(),
                     nama: $('#nama-item').val(),
-                    jumlah_per_pack: $('#kode-item').val(),
-                    satuan_per_pack: $('#kode-item').val(),
-                    stok_minimal: $('#kode-item').val(),
+                    jumlah_per_pack: $('#jumlah-per-pack').val(),
+                    satuan_per_pack: $('#satuan-per-pack').val(),
+                    stok_minimal: $('#stok-minimal').val(),
                     _token: $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(response) {

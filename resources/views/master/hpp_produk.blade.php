@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-body shadow">
                     <p class="fw-bold fs-5 m-0 text-secondary">Tambah Data HPP Produk</p>
-                    <form class="mt-2">
+                    <div class="mt-2">
                         <label for="kode-produk" class="col-form-label">Kode Produk</label>
                         <input type="text" id="kode-produk" name="kode-produk" class="form-control" required>
                         <label for="nama-produk" class="col-form-label">Nama Produk</label>
@@ -59,7 +59,7 @@
                         </div>
                         <button class="btn btn-primary mt-4 w-100" onclick="tambahItem()">Tambah</button>
                         <input class="btn btn-danger mt-2 w-100" value="Bersihkan">
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

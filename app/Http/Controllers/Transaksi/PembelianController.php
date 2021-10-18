@@ -76,7 +76,7 @@ class PembelianController extends Controller
 
             BahanBakuModel::where('nama', $data->nama_item)->update([
                 'harga' => $data->harga,
-                'stok' => DB::raw('stok + ' . $data->jumlah),
+                'stok' => DB::raw('stok + (' . $data->jumlah . ' * jumlah_per_pack)'),
                 'tanggal_expired' => $data->tanggal
             ]);
         }
