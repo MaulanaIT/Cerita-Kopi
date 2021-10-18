@@ -13,6 +13,7 @@
                 <th>Nama</th>
                 <th>HPP</th>
                 <th>Harga Jual</th>
+                <th>Opsi</th>
             </tr>
         </thead>
         <tbody class="align-middle">
@@ -31,6 +32,11 @@
                         <td>{{$data->nama}}</td>
                         <td class="text-end">Rp. {{$hpp}}</td>
                         <td class="text-end">Rp. {{$harga_jual}}</td>
+                        <td class="text-center text-nowrap">
+                            <button id="terapkan-{{$data->kode}}" class="btn btn-success d-none px-3" onclick="terapkanData('{{$data->kode}}')"><i class="fas fa-check"></i>&ensp;Terapkan</button>
+                            <a id="ubah-{{$data->kode}}" class="btn btn-warning px-3" onclick="ubahData('{{$data->kode}}')"><i class="fas fa-edit"></i>&ensp;Ubah</a>
+                            <a id="hapus-{{$data->kode}}" class="btn btn-danger px-3" onclick="hapusData('{{$data->kode}}')"><i class="fas fa-trash"></i>&ensp;Hapus</a>
+                        </td>
                     </tr>
                 @endforeach
             @endif
