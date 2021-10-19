@@ -12,7 +12,6 @@ class PenjualanProdukModel extends Model
     protected $table = 'penjualan_produk';
 
     protected $fillable = [
-        'id',
         'nama_produk',
         'harga',
         'jumlah',
