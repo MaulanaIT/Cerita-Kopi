@@ -146,7 +146,7 @@
                                 `<td class="text-center">` + value.harga_per_item + `</td>` +
                                 `</tr>`);
 
-                            hppAktual += value.jumlah_dipakai * value.harga_per_item;
+                            hppAktual += value.harga_per_item;
                         });
 
                         //Kalkulasi HPP
