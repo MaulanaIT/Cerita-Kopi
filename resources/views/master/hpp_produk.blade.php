@@ -72,7 +72,7 @@
                             <div class="col-12 col-lg-6 px-0 pe-lg-2">
                                 <label for="target-hpp" class="col-form-label">Target HPP</label>
                                 <div class="input-group">
-                                    <input type="number" id="target-hpp" class="form-control" onchange="kalkulasiHpp()">
+                                    <input type="number" id="target-hpp" class="form-control" onchange="kalkulasiHpp(); kalkulasiLaba();">
                                     <span class="input-group-text">%</span>
                                 </div>
                             </div>
@@ -232,7 +232,7 @@
         }
 
         function kalkulasiLaba() {
-            $('#laba-produk').html('Laba Produk : ' + hargaFormat(parseInt($('#harga-jual-aktual').val()) - parseInt($(
+            $('#laba-produk').html('Laba Produk : ' + hargaFormat(parseFloat($('#harga-jual-aktual').val()) - parseFloat($(
                 '#hpp-aktual').val())));
         }
     </script>

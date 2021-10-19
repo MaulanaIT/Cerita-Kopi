@@ -27,12 +27,6 @@ class PenjualanController extends Controller
         $data_penjualan_pembayaran_detail = PenjualanPembayaranDumModel::orderBy('tanggal')->get();
         $data_penjualan_produk_detail = PenjualanProdukDumModel::orderBy('nama_produk')->get();
 
-        // if (count($data_penjualan_pembayaran_detail) > 0) 
-        //     PenjualanPembayaranDumModel::truncate();
-
-        // if (count($data_penjualan_produk_detail) > 0) 
-        //     PenjualanProdukDumModel::truncate();
-
         return view('transaksi.penjualan', compact('curDate', 'data_penjualan_pembayaran_detail', 'data_penjualan_produk_detail', 'data_produk', 'page', 'title'));
     }
 
