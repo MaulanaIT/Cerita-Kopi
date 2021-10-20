@@ -34,6 +34,7 @@ Route::group(['prefix' => 'master'], function() {
     Route::group(['prefix' => 'hpp-produk'], function() {
         Route::get('/', [HPPProdukController::class, 'index']);
         Route::get('/show/{kode}', [HPPProdukController::class, 'show']);
+        Route::post('/delete', [HPPProdukController::class, 'delete']);
         Route::post('/save', [HPPProdukController::class, 'save']);
         Route::post('/store', [HPPProdukController::class, 'store']);
     });
@@ -51,6 +52,7 @@ Route::group(['prefix' => 'transaksi'], function() {
     Route::group(['prefix' => 'pembelian'], function() {
         Route::get('/', [PembelianController::class, 'index']);
         Route::get('/show/{nomor}', [PembelianController::class, 'show']);
+        Route::post('/delete', [PembelianController::class, 'delete']);
         Route::post('/save', [PembelianController::class, 'save']);
         Route::post('/store', [PembelianController::class, 'store']);
     });

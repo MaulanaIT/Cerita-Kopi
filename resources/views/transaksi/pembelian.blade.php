@@ -5,7 +5,7 @@
     <p class="fs-6 m-0 text-secondary">Transaksi / <span class="text-dark">Pembelian</span></p>
 
     <div class="pt-4 row">
-        <div class="col-12 col-lg-6 p-0 pe-lg-2">
+        <div class="col-12 col-lg-6 p-0">
             <div class="card">
                 <div class="card-body shadow">
                     <p class="fw-bold fs-5 m-0 text-secondary">Tambah Pembelian</p>
@@ -58,32 +58,29 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-6 mt-4 mt-lg-0 p-0 ps-lg-2 table-responsive">
-            <table id="table-data" class="table table-bordered table-striped table-hover">
-                <thead class="align-middle text-center text-nowrap">
-                    <tr>
-                        <th>No.</th>
-                        <th>Nama</th>
-                        <th>Harga</th>
-                        <th>Jumlah</th>
-                        <th>Total Harga</th>
-                        <th>Tanggal Expired</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body-data" class="align-middle">
-                </tbody>
-            </table>
-            <button class="btn btn-success my-4 w-100" onclick="simpanData()">Simpan</button>
-        </div>
+    </div>
+    <div class="py-4 p-0 table-responsive">
+        <table id="table-data" class="table table-bordered table-striped table-hover text-nowrap">
+            <thead class="align-middle text-center">
+                <tr>
+                    <th>No.</th>
+                    <th>Nama</th>
+                    <th>Harga</th>
+                    <th>Jumlah</th>
+                    <th>Total Harga</th>
+                    <th>Tanggal Expired</th>
+                    <th>Opsi</th>
+                </tr>
+            </thead>
+            <tbody id="table-body-data" class="align-middle">
+            </tbody>
+        </table>
+        <button class="btn btn-success my-4 w-100" onclick="simpanData()">Simpan</button>
     </div>
 @endsection
 
 @section('script')
     <script>
-        $(document).ready(function() {
-            tampilData();
-        });
-
         function clearForm() {
             $("#nama-item").prop("selectedIndex", 0);
             $("#harga-beli").val(0);
@@ -102,9 +99,9 @@
                 type: 'GET',
                 success: function(response) {
                     if (response.code == 200) {
-                        if (response.data_pembelian_detail.length > 0) {
-                            $('#table-body-data').empty();
+                        $('#table-body-data').empty();
 
+                        if (response.data_pembelian_detail.length > 0) {
                             $.each(response.data_pembelian_detail, function(index, value) {
                                 $('#table-body-data').append(`<tr>` +
                                     `<td class="text-center">` + ++i + `.</td>` +
@@ -115,11 +112,14 @@
                                     `<td class="text-end text-nowrap">` + hargaFormat(value
                                         .total_harga) + `</td>` +
                                     `<td class="text-center">` + value.tanggal + `</td>` +
+                                    `<td class="text-center"><button class="btn btn-danger" onclick="hapusData('` +
+                                    value.nama_item +
+                                    `')"><i class="fas fa-trash"></i> Hapus</button></td>` +
                                     `</tr>`);
                             });
-                            
-                            $('#table-data').DataTable();
                         }
+
+                        $('#table-data').DataTable();
                     }
                 }
             });
@@ -159,6 +159,22 @@
                 success: function(response) {
                     if (response.code == 200) {
                         location.reload();
+                    }
+                }
+            });
+        }
+
+        function hapusData(namaItem) {
+            $.ajax({
+                url: '/transaksi/pembelian/delete',
+                type: 'POST',
+                data: {
+                    nomor: $('#nomor-transaksi').val(),
+                    nama_item: namaItem
+                },
+                success: function(response) {
+                    if (response.code == 200) {
+                        tampilData();
                     }
                 }
             });

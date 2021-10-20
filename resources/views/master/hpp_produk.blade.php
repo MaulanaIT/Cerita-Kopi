@@ -101,15 +101,16 @@
             </div>
         </div>
     </div>
-    <div class="p-0 pt-4 table-responsive">
-        <table id="table-data" class="table table-bordered table-striped table-hover">
-            <thead class="align-middle text-center text-nowrap">
+    <div class="p-0 py-4 table-responsive">
+        <table id="table-data" class="table table-bordered table-striped table-hover text-nowrap">
+            <thead class="align-middle text-center">
                 <tr>
                     <th>No.</th>
                     <th>Nama Item</th>
                     <th>Jumlah Dipakai</th>
                     <th>Satuan Dipakai</th>
                     <th>Harga Per Item</th>
+                    <th>Opsi</th>
                 </tr>
             </thead>
             <tbody id="table-body-data" class="align-middle">
@@ -121,10 +122,6 @@
 
 @section('script')
     <script>
-        $(document).ready(function() {
-            tampilItem();
-        });
-
         function tampilItem() {
             let i = 0;
             let kodeProduk = $('#kode-produk').val();
@@ -137,17 +134,22 @@
                     if (response.code == 200) {
                         $('#table-body-data').empty();
 
-                        $.each(response.data_produk_detail, function(index, value) {
-                            $('#table-body-data').append(`<tr>` +
-                                `<td class="text-center">` + ++i + `.</td>` +
-                                `<td>` + value.nama_item + `</td>` +
-                                `<td class="text-center">` + value.jumlah_dipakai + `</td>` +
-                                `<td class="text-center">` + value.satuan_dipakai + `</td>` +
-                                `<td class="text-center">` + value.harga_per_item + `</td>` +
-                                `</tr>`);
+                        if (response.data_produk_detail.length > 0) {
+                            $.each(response.data_produk_detail, function(index, value) {
+                                $('#table-body-data').append(`<tr>` +
+                                    `<td class="text-center">` + ++i + `.</td>` +
+                                    `<td>` + value.nama_item + `</td>` +
+                                    `<td class="text-center">` + value.jumlah_dipakai + `</td>` +
+                                    `<td class="text-center">` + value.satuan_dipakai + `</td>` +
+                                    `<td class="text-center">` + hargaFormat(value.harga_per_item) + `</td>` +
+                                    `<td class="text-center"><button class="btn btn-danger" onclick="hapusItem('` + value.nama_item + `')"><i class="fas fa-trash"></i> Hapus</button></td>` +
+                                    `</tr>`);
 
-                            hppAktual += value.harga_per_item;
-                        });
+                                hppAktual += value.harga_per_item;
+                            });
+                        } else {
+                            hppAktual = 0;
+                        }
 
                         //Kalkulasi HPP
                         $('#hpp-aktual').val(hppAktual);
@@ -201,6 +203,21 @@
                 success: function(response) {
                     if (response.code == 200) {
                         location.reload();
+                    }
+                }
+            });
+        }
+
+        function hapusItem(namaItem) {
+            $.ajax({
+                url: '/master/hpp-produk/delete',
+                type: 'POST',
+                data: {
+                    nama_item: namaItem
+                },
+                success: function(response) {
+                    if (response.code == 200) {
+                        tampilItem();
                     }
                 }
             });

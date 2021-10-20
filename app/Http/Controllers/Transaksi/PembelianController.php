@@ -16,7 +16,7 @@ class PembelianController extends Controller
         $page = 'Pembelian';
         $title = 'Cerita Kopi - Pembelian';
 
-        $curDate = Carbon::now();
+        $curDate = Carbon::today()->toDateString();
 
         $data_item = BahanBakuModel::select('*')->orderBy('nama')->get();
 
@@ -86,6 +86,12 @@ class PembelianController extends Controller
             'total_harga' => $total_harga,
             'tanggal' => $request->tanggal
         ]);
+
+        return response()->json(['code' => 200]);
+    }
+
+    function delete(Request $request) {
+        PembelianDetailModel::where('nama_item', $request->input('nama_item'))->where('nomor', $request->input('nomor'))->delete();
 
         return response()->json(['code' => 200]);
     }

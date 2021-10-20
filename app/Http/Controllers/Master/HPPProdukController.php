@@ -69,4 +69,10 @@ class HPPProdukController extends Controller
 
         return response()->json(['code' => 200]);
     }
+
+    function delete(Request $request) {
+        ProdukDetailDumModel::where('nama_item', $request->input('nama_item'))->delete();
+
+        return response()->json(['code' => 200]);
+    }
 }

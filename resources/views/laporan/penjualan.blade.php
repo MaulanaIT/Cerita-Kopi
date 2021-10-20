@@ -6,7 +6,7 @@
 <p class="fs-6 m-0 text-secondary">Laporan / <span class="text-dark">Penjualan</span></p>
 
 <div class="pt-4 row">
-    <div class="col-12 col-lg-6 p-0 pe-lg-2">
+    <div class="col-12 col-lg-6 p-0">
         <div class="card">
             <div class="card-body shadow">
                 <p class="fw-bold fs-5 m-0 text-secondary">Laporan Penjualan</p>
@@ -31,7 +31,7 @@
         </div>
     </div>
 </div>
-<div class="mt-4 p-0 ps-lg-2 table-responsive">
+<div class="py-4 p-0 table-responsive">
     <table id="table-data" class="table table-bordered table-striped table-hover">
         <thead class="align-middle text-center text-nowrap">
             <tr>
