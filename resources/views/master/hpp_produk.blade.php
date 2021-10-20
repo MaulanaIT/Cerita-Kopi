@@ -227,8 +227,8 @@
         }
 
         function kalkulasiHargaPerItem() {
-            $('#harga-item-per-unit').val(parseInt($('#jumlah-dipakai').val()) / parseInt($('#jumlah-per-pack').val()) *
-                parseInt($('#harga-item').val()));
+            $('#harga-item-per-unit').val(parseInt(parseInt($('#jumlah-dipakai').val()) / parseInt($('#jumlah-per-pack').val()) *
+                parseInt($('#harga-item').val())));
         }
 
         function kalkulasiLaba() {

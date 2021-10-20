@@ -80,7 +80,7 @@ class PenjualanController extends Controller
                 $data_produk_detail = ProdukDetailModel::where('kode', $data->kode)->get();
 
                 foreach ($data_produk_detail as $item) {
-                    BahanBakuModel::where('kode', $data->kode)->update([
+                    BahanBakuModel::where('nama', $item->nama_item)->update([
                         'stok' => DB::raw('stok - ' . $item->jumlah_dipakai)
                     ]);
                 }
@@ -89,7 +89,8 @@ class PenjualanController extends Controller
                     'nama_produk' => $data->nama_produk,
                     'harga' => $data->harga,
                     'jumlah' => $data->jumlah,
-                    'total_harga' => $data->total_harga
+                    'total_harga' => $data->total_harga,
+                    'tanggal' => Carbon::now()
                 ]);
             }
 

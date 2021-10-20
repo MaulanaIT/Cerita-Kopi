@@ -15,6 +15,7 @@ class PenjualanProdukModel extends Model
         'nama_produk',
         'harga',
         'jumlah',
-        'total_harga'
+        'total_harga',
+        'tanggal'
     ];
 }
