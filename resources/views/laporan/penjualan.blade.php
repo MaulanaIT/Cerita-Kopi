@@ -14,18 +14,6 @@
                     <label for="rentang-tanggal" class="col-form-label">Rentang Tanggal</label>
                     <input type="text" class="form-control" name="rentang-tanggal" id="rentang-tanggal">
                 </div>
-                {{-- <div class="mt-2">
-                    <label for="type-pembayaran" class="col-form-label">Type Pembayaran</label>
-                    <select name="type-pembayaran" id="type-pembayaran" class="form-select">
-                        @if (count($data_type_pembayaran) > 0)
-                            @foreach ($data_type_pembayaran as $data)
-                                <option value="{{$data->nama}}">{{$data->nama}}</option>
-                            @endforeach
-                        @else
-                            <option value="">-- Daftar Type Pembayaran Tidak Tersedia --</option>
-                        @endif
-                    </select>
-                </div> --}}
                 <button class="btn btn-primary mt-4 w-100" onclick="tampilData()">Tampilkan</button>
             </div>
         </div>

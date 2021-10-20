@@ -59,6 +59,10 @@ Route::group(['prefix' => 'transaksi'], function() {
 
     Route::group(['prefix' => 'penjualan'], function() {
         Route::get('/', [PenjualanController::class, 'index']);
+        Route::post('/delete-pembayaran', [PenjualanController::class, 'deletePembayaran']);
+        Route::post('/delete-produk', [PenjualanController::class, 'deleteProduk']);
+        Route::post('/update-pembayaran', [PenjualanController::class, 'updatePembayaran']);
+        Route::post('/update-produk', [PenjualanController::class, 'updateProduk']);
         Route::post('/import', [PenjualanController::class, 'import']);
         Route::post('/save', [PenjualanController::class, 'save']);
         Route::post('/store', [PenjualanController::class, 'store']);

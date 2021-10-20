@@ -51,6 +51,40 @@ class PenjualanController extends Controller
         return back();
     }
 
+    function updatePembayaran(Request $request) {
+        PenjualanPembayaranDumModel::where('id', $request->input('id'))->update([
+            'jenis_pembayaran'  => $request->input('jenis_pembayaran'),
+            'jumlah_pembayaran' => $request->input('jumlah_pembayaran'),
+            'jenis_kartu' => $request->input('jenis_kartu'),
+            'tanggal' => $request->input('tanggal')
+        ]);
+
+        return response()->json(['code' => 200]);
+    }
+
+    function updateProduk(Request $request) {
+        PenjualanProdukDumModel::where('id', $request->input('id'))->update([
+            'nama_produk'  => $request->input('nama_produk'),
+            'harga' => $request->input('harga'),
+            'jumlah' => $request->input('jumlah'),
+            'total_harga' => $request->input('harga') * $request->input('jumlah')
+        ]);
+
+        return response()->json(['code' => 200]);
+    }
+
+    function deletePembayaran(Request $request) {
+        PenjualanPembayaranDumModel::where('id', $request->input('id'))->delete();
+
+        return response()->json(['code' => 200]);
+    }
+    
+    function deleteProduk(Request $request) {
+        PenjualanProdukDumModel::where('id', $request->input('id'))->delete();
+
+        return response()->json(['code' => 200]);
+    }
+
     function save() {
         $data_penjualan_pembayaran = PenjualanPembayaranDumModel::all();
         $data_penjualan_produk = PenjualanProdukDumModel::all();
