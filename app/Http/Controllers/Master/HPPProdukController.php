@@ -40,6 +40,7 @@ class HPPProdukController extends Controller
         foreach ($data_produk_detail_dum as $data) {
             ProdukDetailModel::create([
                 'kode' => $data->kode,
+                'nama' => $data->nama,
                 'nama_item' => $data->nama_item, 
                 'jumlah_dipakai' => $data->jumlah_dipakai,
                 'satuan_dipakai' => $data->satuan_dipakai,

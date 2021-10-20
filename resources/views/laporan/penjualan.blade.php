@@ -14,7 +14,7 @@
                     <label for="rentang-tanggal" class="col-form-label">Rentang Tanggal</label>
                     <input type="text" class="form-control" name="rentang-tanggal" id="rentang-tanggal">
                 </div>
-                <div class="mt-2">
+                {{-- <div class="mt-2">
                     <label for="type-pembayaran" class="col-form-label">Type Pembayaran</label>
                     <select name="type-pembayaran" id="type-pembayaran" class="form-select">
                         @if (count($data_type_pembayaran) > 0)
@@ -25,52 +25,32 @@
                             <option value="">-- Daftar Type Pembayaran Tidak Tersedia --</option>
                         @endif
                     </select>
-                </div>
+                </div> --}}
                 <button class="btn btn-primary mt-4 w-100" onclick="tampilData()">Tampilkan</button>
             </div>
         </div>
     </div>
-    <div class="col-12 col-lg-6 mt-4 mt-lg-0 p-0 ps-lg-2 table-responsive">
-        <table id="table-data" class="table table-bordered table-striped table-hover">
-            <thead class="align-middle text-center text-nowrap">
-                <tr>
-                    <th>No.</th>
-                    <th>Nama Produk</th>
-                    <th>Jumlah Produk</th>
-                    <th>Uang Yang Diterima</th>
-                </tr>
-            </thead>
-            <tbody id="table-body-data" class="align-middle">
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <p class="fw-bold text-start">Tunai :</p>
-                        <p class="text-end">Rp. 0,00</p>
-                        <p class="fw-bold text-start">Online :</p>
-                        <p class="text-start">Gofood/Gopay :</p>
-                        <p class="text-end">Rp. 0,00</p>
-                        <p class="text-start">Gopay (QRIS) :</p>
-                        <p class="text-end">Rp. 0,00</p>
-                        <p class="text-start">OVO/Shopeepay :</p>
-                        <p class="text-end">Rp. 0,00</p>
-                        <p class="text-start">QRIS (Dana, BRI, BCA) :</p>
-                        <p class="text-end">Rp. 0,00</p>
-                        <p class="text-start">Debit :</p>
-                        <p class="text-end">Rp. 0,00</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+</div>
+<div class="mt-4 p-0 ps-lg-2 table-responsive">
+    <table id="table-data" class="table table-bordered table-striped table-hover">
+        <thead class="align-middle text-center text-nowrap">
+            <tr>
+                <th>No.</th>
+                <th>Nama Produk</th>
+                <th>Jumlah Produk</th>
+                <th>Uang Yang Diterima</th>
+            </tr>
+        </thead>
+        <tbody id="table-body-data" class="align-middle">
+        </tbody>
+    </table>
 </div>
 @endsection
 
 @section('script')
 <script>
-let startDate;
-let endDate;
+let startDate = "{{$curDate}}";
+let endDate = "{{$curDate}}";
 
     $(function() {
         tampilData();
@@ -91,20 +71,37 @@ let endDate;
             type: 'POST',
             data: {
                 start_date: startDate,
-                end_date: endDate,
-                type_pembayaran: $('#type-pembayaran').val()
+                end_date: endDate
+                // type_pembayaran: $('#type-pembayaran').val()
             },
             success: function(response) {
                 if (response.code == 200) {
                     $('#table-body-data').empty();
 
-                    $.each(response.data_laporan_penjualan, function(index, value) {
-                        $('#table-body-data').append(`<tr>` +
-                            `<td>` + ++$i + `.</td>` +
-                            `<td></td>` +
-                            `<td></td>` +
-                            `<td></td>` +
-                        `</tr>`);
+                    $.each(response.data_penjualan_produk, function(index, value) {
+                        if (index == 0) {
+                            let pendapatan = '';
+
+                            $.each(response.data_penjualan_pembayaran, function(index, values) {
+                                pendapatan = pendapatan + `<div class="text-start">` + values.jenis_pembayaran + ` : </div><div class="pb-2 text-end">` + hargaFormat(values.jumlah_pembayaran) + `</div>`;
+                            });
+
+                            $('#table-body-data').append(`<tr>` +
+                                `<td class="text-center">` + ++index + `.</td>` +
+                                `<td>` + value.nama_produk + `</td>` +
+                                `<td class="text-center">` + value.jumlah + `</td>` +
+                                `<td rowspan='` + response.data_penjualan_produk.length + `'>` + 
+                                    pendapatan +
+                                `</td>` +
+                            `</tr>`);
+                        } else {
+                            $('#table-body-data').append(`<tr>` +
+                                `<td class="text-center">` + ++index + `.</td>` +
+                                `<td>` + value.nama_produk + `</td>` +
+                                `<td class="text-center">` + value.jumlah + `</td>` +
+                                `<td class="d-none"></td>` +
+                            `</tr>`);
+                        }
                     });
 
                     $('#table-data').DataTable();

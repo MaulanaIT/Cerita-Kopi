@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Laporan;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaksi\PenjualanPembayaranModel;
 use App\Models\Transaksi\PenjualanProdukModel;
 use App\Models\TypePembayaranModel;
 use Carbon\Carbon;
@@ -15,7 +16,7 @@ class PenjualanController extends Controller
         $page = "Laporan Penjualan";
         $title = "Cerita Kopi - Laporan Penjualan";
 
-        $curDate = Carbon::now();
+        $curDate = Carbon::today()->toDateString();
 
         $data_type_pembayaran = TypePembayaranModel::orderBy('nama')->get();
 
@@ -27,14 +28,20 @@ class PenjualanController extends Controller
         $end_date = $request->input('end_date');
 
         if ($start_date && $end_date) {
-            $data_penjualan_produk = PenjualanProdukModel::select(DB::raw('nama_produk, harga, SUM(jumlah) AS jumlah, SUM(total_harga) AS total_harga, tanggal'))
+            $data_penjualan_produk = PenjualanProdukModel::select('nama_produk', 'harga', DB::raw('SUM(jumlah) AS jumlah'), DB::raw('SUM(total_harga) AS total_harga'), 'tanggal')
+                                                        ->whereBetween(DB::raw('DATE(tanggal)'), [$start_date, $end_date])
                                                         ->groupBy('nama_produk')
-                                                        ->whereBetween('tanggal', [$start_date, $end_date])
                                                         ->get();
+
+            $data_penjualan_pembayaran = PenjualanPembayaranModel::select('jenis_pembayaran', DB::raw('SUM(jumlah_pembayaran) AS jumlah_pembayaran'), 'jenis_kartu', 'tanggal')
+                                                                ->whereBetween(DB::raw('DATE(tanggal)'), [$start_date, $end_date])
+                                                                ->groupBy('jenis_pembayaran')
+                                                                ->get();
         } else {
             $data_penjualan_produk = [];
+            $data_penjualan_pembayaran = [];
         }
 
-        return response()->json(['code' => 200, 'data_penjualan_produk' => $data_penjualan_produk]);
+        return response()->json(['code' => 200, 'data_penjualan_produk' => $data_penjualan_produk, 'data_penjualan_pembayaran' => $data_penjualan_pembayaran]);
     }
 }

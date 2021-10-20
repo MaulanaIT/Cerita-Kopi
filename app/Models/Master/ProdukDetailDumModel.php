@@ -13,6 +13,7 @@ class ProdukDetailDumModel extends Model
 
     protected $fillable = [
         'kode',
+        'nama',
         'nama_item',
         'jumlah_dipakai',
         'satuan_dipakai',

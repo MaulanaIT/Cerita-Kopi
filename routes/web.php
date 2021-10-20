@@ -72,6 +72,7 @@ Route::group(['prefix' => 'laporan'], function() {
 
     Route::group(['prefix' => 'penjualan'], function() {
         Route::get('/', [LaporanPenjualanController::class, 'index']);
+        Route::post('/show', [LaporanPenjualanController::class, 'show']);
         Route::post('/store', [LaporanPenjualanController::class, 'store']);
     });
 });

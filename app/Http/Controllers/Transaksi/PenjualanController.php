@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Imports\DaftarPembayaranImport;
 use App\Imports\DaftarProdukImport;
 use App\Models\Master\BahanBakuModel;
+use App\Models\Master\ProdukDetailDumModel;
 use App\Models\Master\ProdukDetailModel;
 use App\Models\Master\ProdukModel;
 use App\Models\Transaksi\PenjualanPembayaranDumModel;
@@ -77,11 +78,11 @@ class PenjualanController extends Controller
             }
             
             foreach ($data_penjualan_produk as $data) {
-                $data_produk_detail = ProdukDetailModel::where('kode', $data->kode)->get();
+                $data_produk_detail = ProdukDetailModel::where('nama', $data->nama_produk)->get();
 
                 foreach ($data_produk_detail as $item) {
                     BahanBakuModel::where('nama', $item->nama_item)->update([
-                        'stok' => DB::raw('stok - ' . $item->jumlah_dipakai)
+                        'stok' => DB::raw('stok - (' . $item->jumlah_dipakai . ' * ' . $data->jumlah . ')')
                     ]);
                 }
 

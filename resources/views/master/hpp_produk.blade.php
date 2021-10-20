@@ -172,6 +172,7 @@
                 type: 'POST',
                 data: {
                     kode: $('#kode-produk').val(),
+                    nama: $('#nama-produk').val(),
                     nama_item: $('#nama-item').val(),
                     jumlah_dipakai: $('#jumlah-dipakai').val(),
                     satuan_dipakai: $('#satuan-dipakai').val(),
