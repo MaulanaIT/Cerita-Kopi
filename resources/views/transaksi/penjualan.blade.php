@@ -134,6 +134,8 @@
                 success: function(response) {
                     if (response.code == 200) {
                         location.reload();
+                    } else if (response.code == 406) {
+                        alert('Terdapat produk belum tersedia di database.');
                     }
                 }
             });

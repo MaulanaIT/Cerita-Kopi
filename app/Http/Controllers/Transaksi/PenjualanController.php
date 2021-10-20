@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Transaksi;
 use App\Http\Controllers\Controller;
 use App\Imports\DaftarPembayaranImport;
 use App\Imports\DaftarProdukImport;
+use App\Models\Master\BahanBakuModel;
+use App\Models\Master\ProdukDetailModel;
 use App\Models\Master\ProdukModel;
 use App\Models\Transaksi\PenjualanPembayaranDumModel;
 use App\Models\Transaksi\PenjualanPembayaranModel;
@@ -12,6 +14,7 @@ use App\Models\Transaksi\PenjualanProdukDumModel;
 use App\Models\Transaksi\PenjualanProdukModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PenjualanController extends Controller
@@ -51,27 +54,53 @@ class PenjualanController extends Controller
         $data_penjualan_pembayaran = PenjualanPembayaranDumModel::all();
         $data_penjualan_produk = PenjualanProdukDumModel::all();
 
-        foreach ($data_penjualan_pembayaran as $data) {
-            PenjualanPembayaranModel::create([
-                'jenis_pembayaran' => $data->jenis_pembayaran,
-                'jumlah_pembayaran' => $data->jumlah_pembayaran,
-                'jenis_kartu' => $data->jenis_kartu,
-                'tanggal' => $data->tanggal
-            ]);
-        }
-        
+        $isChecked = true;
+
         foreach ($data_penjualan_produk as $data) {
-            PenjualanProdukModel::create([
-                'nama_produk' => $data->nama_produk,
-                'harga' => $data->harga,
-                'jumlah' => $data->jumlah,
-                'total_harga' => $data->total_harga
-            ]);
+            $check = ProdukModel::where('nama', $data->nama_produk)->get();
+
+            if (count($check) <= 0) {
+                $isChecked = false;
+
+                break;
+            }
         }
 
-        PenjualanPembayaranDumModel::truncate();
-        PenjualanProdukDumModel::truncate();
+        if ($isChecked) {
+            foreach ($data_penjualan_pembayaran as $data) {
+                PenjualanPembayaranModel::create([
+                    'jenis_pembayaran' => $data->jenis_pembayaran,
+                    'jumlah_pembayaran' => $data->jumlah_pembayaran,
+                    'jenis_kartu' => $data->jenis_kartu,
+                    'tanggal' => $data->tanggal
+                ]);
+            }
+            
+            foreach ($data_penjualan_produk as $data) {
+                $data_produk_detail = ProdukDetailModel::where('kode', $data->kode)->get();
 
-        return response()->json(['code' => 200]);
+                foreach ($data_produk_detail as $item) {
+                    BahanBakuModel::where('kode', $data->kode)->update([
+                        'stok' => DB::raw('stok - ' . $item->jumlah_dipakai)
+                    ]);
+                }
+
+                PenjualanProdukModel::create([
+                    'nama_produk' => $data->nama_produk,
+                    'harga' => $data->harga,
+                    'jumlah' => $data->jumlah,
+                    'total_harga' => $data->total_harga
+                ]);
+            }
+
+            PenjualanPembayaranDumModel::truncate();
+            PenjualanProdukDumModel::truncate();
+
+            $code = 200;
+        } else {
+            $code = 406;
+        }
+
+        return response()->json(['code' => $code]);
     }
 }

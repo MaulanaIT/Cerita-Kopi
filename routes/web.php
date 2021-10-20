@@ -40,6 +40,8 @@ Route::group(['prefix' => 'master'], function() {
 
     Route::group(['prefix' => 'produk'], function() {
         Route::get('/', [ProdukController::class, 'index']);
+        Route::post('/delete/{kode}', [ProdukController::class, 'delete']);
+        Route::post('/update', [ProdukController::class, 'update']);
         Route::post('/store', [ProdukController::class, 'store']);
     });
 });
