@@ -67,6 +67,7 @@ Route::group(['prefix' => 'laporan'], function() {
 
     Route::group(['prefix' => 'pembelian'], function() {
         Route::get('/', [LaporanPembelianController::class, 'index']);
+        Route::post('/show', [LaporanPembelianController::class, 'show']);
         Route::post('/store', [LaporanPembelianController::class, 'store']);
     });
 
