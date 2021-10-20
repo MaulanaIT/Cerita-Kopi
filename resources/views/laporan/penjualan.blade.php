@@ -17,10 +17,16 @@
                 <div class="mt-2">
                     <label for="type-pembayaran" class="col-form-label">Type Pembayaran</label>
                     <select name="type-pembayaran" id="type-pembayaran" class="form-select">
-                        <option value="">-- Pilih Type Pembayaran --</option>
+                        @if (count($data_type_pembayaran) > 0)
+                            @foreach ($data_type_pembayaran as $data)
+                                <option value="{{$data->nama}}">{{$data->nama}}</option>
+                            @endforeach
+                        @else
+                            <option value="">-- Daftar Type Pembayaran Tidak Tersedia --</option>
+                        @endif
                     </select>
                 </div>
-                <button class="btn btn-primary mt-4 w-100">Tampilkan</button>
+                <button class="btn btn-primary mt-4 w-100" onclick="tampilData()">Tampilkan</button>
             </div>
         </div>
     </div>
@@ -34,7 +40,7 @@
                     <th>Uang Yang Diterima</th>
                 </tr>
             </thead>
-            <tbody class="align-middle">
+            <tbody id="table-body-data" class="align-middle">
                 <tr>
                     <td></td>
                     <td></td>
@@ -57,19 +63,54 @@
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-success my-4 px-3"><i class="fas fa-file-export"></i>&ensp;Excel</button>
     </div>
 </div>
 @endsection
 
 @section('script')
 <script>
+let startDate;
+let endDate;
+
     $(function() {
+        tampilData();
+
         $('#rentang-tanggal').daterangepicker({
             opens: 'left'
         }, function(start, end, label) {
-            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            startDate = start.format('YYYY-MM-DD');
+            endDate = end.format('YYYY-MM-DD');
         });
     });
+
+    function tampilData() {
+        var index = 0;
+
+        $.ajax({
+            url: '/laporan/penjualan/show',
+            type: 'POST',
+            data: {
+                start_date: startDate,
+                end_date: endDate,
+                type_pembayaran: $('#type-pembayaran').val()
+            },
+            success: function(response) {
+                if (response.code == 200) {
+                    $('#table-body-data').empty();
+
+                    $.each(response.data_laporan_penjualan, function(index, value) {
+                        $('#table-body-data').append(`<tr>` +
+                            `<td>` + ++$i + `.</td>` +
+                            `<td></td>` +
+                            `<td></td>` +
+                            `<td></td>` +
+                        `</tr>`);
+                    });
+
+                    $('#table-data').DataTable();
+                }
+            }
+        });
+    }
 </script>
 @endsection
