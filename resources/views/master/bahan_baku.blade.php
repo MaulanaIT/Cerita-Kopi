@@ -5,7 +5,7 @@
     <p class="fs-6 m-0 text-secondary">Master / <span class="text-dark">Bahan Baku</span></p>
 
     <div class="pt-4 row">
-        <div class="col-12 col-lg-6 p-0 pe-lg-2">
+        <div class="col-12 col-lg-6 p-0">
             <div class="card">
                 <div class="card-body shadow">
                     <p class="fw-bold fs-5 m-0 text-secondary">Tambah Data Bahan Baku</p>
@@ -44,43 +44,43 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-6 p-0 pt-4 pt-lg-0 ps-lg-2 table-responsive">
-            <table id="table-data" class="table table-bordered table-striped table-hover">
-                <thead class="align-middle text-center text-nowrap">
-                    <tr>
-                        <th>No.</th>
-                        <th>Kode</th>
-                        <th>Nama</th>
-                        <th>Harga</th>
-                        <th>Jumlah Per Pack</th>
-                        <th>Satuan Per Pack</th>
-                        <th>Stok Minimal</th>
-                        <th>Stok</th>
-                        <th>Tanggal Expired</th>
-                    </tr>
-                </thead>
-                <tbody class="align-middle">
-                    @if (count($data_bahan_baku) > 0)
-                        @php
-                            $i = 0;
-                        @endphp
-                        @foreach ($data_bahan_baku as $data)
-                            <tr>
-                                <td class="text-center">{{ ++$i . '.' }}</td>
-                                <td>{{ $data->kode }}</td>
-                                <td>{{ $data->nama }}</td>
-                                <td class="text-end text-nowrap">Rp. {{ number_format($data->harga, 2, ',', '.') }}</td>
-                                <td class="text-center">{{ $data->jumlah_per_pack }}</td>
-                                <td class="text-center">{{ $data->satuan_per_pack }}</td>
-                                <td class="text-center">{{ $data->stok_minimal }}</td>
-                                <td class="text-center">{{ $data->stok }}</td>
-                                <td class="text-center">{{ date('d-m-Y', strtotime($data->tanggal_expired)) }}</td>
-                            </tr>
-                        @endforeach
-                    @endif
-                </tbody>
-            </table>
-        </div>
+    </div>
+    <div class="p-0 py-4 table-responsive">
+        <table id="table-data" class="table table-bordered table-striped table-hover">
+            <thead class="align-middle text-center text-nowrap">
+                <tr>
+                    <th>No.</th>
+                    <th>Kode</th>
+                    <th>Nama</th>
+                    <th>Harga</th>
+                    <th>Jumlah Per Pack</th>
+                    <th>Satuan Per Pack</th>
+                    <th>Stok Minimal</th>
+                    <th>Stok</th>
+                    <th>Tanggal Expired</th>
+                </tr>
+            </thead>
+            <tbody class="align-middle">
+                @if (count($data_bahan_baku) > 0)
+                    @php
+                        $i = 0;
+                    @endphp
+                    @foreach ($data_bahan_baku as $data)
+                        <tr>
+                            <td class="text-center">{{ ++$i . '.' }}</td>
+                            <td>{{ $data->kode }}</td>
+                            <td>{{ $data->nama }}</td>
+                            <td class="text-end text-nowrap">Rp. {{ number_format($data->harga, 2, ',', '.') }}</td>
+                            <td class="text-center">{{ $data->jumlah_per_pack }}</td>
+                            <td class="text-center">{{ $data->satuan_per_pack }}</td>
+                            <td class="text-center">{{ $data->stok_minimal }}</td>
+                            <td class="text-center">{{ $data->stok }}</td>
+                            <td class="text-center">{{ date('d-m-Y', strtotime($data->tanggal_expired)) }}</td>
+                        </tr>
+                    @endforeach
+                @endif
+            </tbody>
+        </table>
     </div>
 @endsection
 

@@ -115,6 +115,14 @@
             </thead>
             <tbody id="table-body-data" class="align-middle">
             </tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td id="rekap-jumlah" class="text-center">0</td>
+                <td></td>
+                <td id="rekap-harga" class="text-end">Rp. 0,00</td>
+                <td></td>
+            </tr>
         </table>
         <button class="btn btn-success my-4 w-100" onclick="simpanProduk()">Simpan</button>
     </div>
@@ -134,6 +142,9 @@
                     if (response.code == 200) {
                         $('#table-body-data').empty();
 
+                        let jumlah = 0;
+                        let harga = 0;
+
                         if (response.data_produk_detail.length > 0) {
                             $.each(response.data_produk_detail, function(index, value) {
                                 $('#table-body-data').append(`<tr>` +
@@ -146,7 +157,13 @@
                                     `</tr>`);
 
                                 hppAktual += value.harga_per_item;
+
+                                jumlah += value.jumlah_dipakai;
+                                harga += value.harga_per_item;
                             });
+
+                            $('#rekap-jumlah').html(jumlah);
+                            $('#rekap-harga').html(hargaFormat(harga));
                         } else {
                             hppAktual = 0;
                         }

@@ -74,6 +74,15 @@
             </thead>
             <tbody id="table-body-data" class="align-middle">
             </tbody>
+            <tr id="table-total">
+                <td></td>
+                <td></td>
+                <td id="rekap-harga" class="text-end">Rp. 0,00</td>
+                <td id="rekap-jumlah" class="text-center">0</td>
+                <td id="rekap-total-harga" class="text-end">Rp. 0,00</td>
+                <td></td>
+                <td></td>
+            </tr>
         </table>
         <button class="btn btn-success my-4 w-100" onclick="simpanData()">Simpan</button>
     </div>
@@ -101,6 +110,10 @@
                     if (response.code == 200) {
                         $('#table-body-data').empty();
 
+                        let harga = 0;
+                        let jumlah = 0;
+                        let totalHarga = 0;
+
                         if (response.data_pembelian_detail.length > 0) {
                             $.each(response.data_pembelian_detail, function(index, value) {
                                 $('#table-body-data').append(`<tr>` +
@@ -116,7 +129,15 @@
                                     value.nama_item +
                                     `')"><i class="fas fa-trash"></i> Hapus</button></td>` +
                                     `</tr>`);
+
+                                harga += value.harga;
+                                jumlah += value.jumlah;
+                                totalHarga += value.total_harga;
                             });
+
+                            $('#rekap-harga').html(hargaFormat(harga));
+                            $('#rekap-jumlah').html(jumlah);
+                            $('#rekap-total-harga').html(hargaFormat(totalHarga));
                         }
 
                         $('#table-data').DataTable();

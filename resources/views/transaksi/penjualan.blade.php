@@ -65,10 +65,10 @@
                     @endphp
                 </tbody>
                 <tr>
+                    <td></td>
                     <td class="d-none"></td>
                     <td class="d-none"></td>
-                    <td class="d-none"></td>
-                    <th colspan="4" class="text-center">Total</th>
+                    <th colspan="3" class="text-center">Total</th>
                     <td class="text-end text-nowrap">Rp. {{$total}}</td>
                 </tr>
             </table>
@@ -108,10 +108,10 @@
                     @endphp
                 </tbody>
                 <tr>
+                    <td></td>
                     <td class="d-none"></td>
                     <td class="d-none"></td>
-                    <td class="d-none"></td>
-                    <th colspan="4" class="text-center">Total</th>
+                    <th colspan="3" class="text-center">Total</th>
                     <td class="text-end text-nowrap">Rp. {{$total}}</td>
                 </tr>
             </table>
