@@ -36,12 +36,12 @@
                                     value={{ $data->nama }}>
                             </td>
                             <td class="text-end">
-                                <div id="hpp-{{ $data->kode }}">Rp. {{ $data->hpp }}</div>
+                                <div id="hpp-{{ $data->kode }}">Rp. {{ $hpp }}</div>
                                 <input type="text" id="edit-hpp-{{ $data->kode }}" name="edit-hpp-{{ $data->kode }}"
                                     class="d-none form-control" value={{ $data->hpp }}>
                             </td>
                             <td class="text-end">
-                                <div id="harga-jual-{{ $data->kode }}">Rp. {{ $data->harga_jual }}</div>
+                                <div id="harga-jual-{{ $data->kode }}">Rp. {{ $harga_jual }}</div>
                                 <input type="text" id="edit-harga-jual-{{ $data->kode }}"
                                     name="edit-harga-jual-{{ $data->kode }}" class="d-none form-control"
                                     value={{ $data->harga_jual }}>
@@ -97,8 +97,8 @@
                 success: function(response) {
                     if (response.code == 200) {
                         $('#nama-produk-' + kodeItem).html($('#edit-nama-produk-' + kodeItem).val());
-                        $('#hpp-' + kodeItem).html($('#edit-hpp-' + kodeItem).val());
-                        $('#harga-jual-' + kodeItem).html($('#edit-harga-jual-' + kodeItem).val());
+                        $('#hpp-' + kodeItem).html(hargaFormat($('#edit-hpp-' + kodeItem).val()));
+                        $('#harga-jual-' + kodeItem).html(hargaFormat($('#edit-harga-jual-' + kodeItem).val()));
 
                         $('#edit-nama-produk-' + kodeItem).addClass('d-none');
                         $('#edit-hpp-' + kodeItem).addClass('d-none');

@@ -65,6 +65,7 @@ class PenjualanController extends Controller
     function updateProduk(Request $request) {
         PenjualanProdukDumModel::where('id', $request->input('id'))->update([
             'nama_produk'  => $request->input('nama_produk'),
+            'hpp' => $request->input('hpp'),
             'harga' => $request->input('harga'),
             'jumlah' => $request->input('jumlah'),
             'total_harga' => $request->input('harga') * $request->input('jumlah')
@@ -122,6 +123,7 @@ class PenjualanController extends Controller
 
                 PenjualanProdukModel::create([
                     'nama_produk' => $data->nama_produk,
+                    'hpp' => $data->hpp,
                     'harga' => $data->harga,
                     'jumlah' => $data->jumlah,
                     'total_harga' => $data->total_harga,

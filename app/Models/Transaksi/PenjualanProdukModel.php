@@ -13,6 +13,7 @@ class PenjualanProdukModel extends Model
 
     protected $fillable = [
         'nama_produk',
+        'hpp',
         'harga',
         'jumlah',
         'total_harga',

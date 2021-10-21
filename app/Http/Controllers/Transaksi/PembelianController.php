@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Transaksi;
 
 use App\Http\Controllers\Controller;
 use App\Models\Master\BahanBakuModel;
+use App\Models\Master\ProdukDetailModel;
+use App\Models\Master\ProdukModel;
 use App\Models\Transaksi\PembelianDetailModel;
 use App\Models\Transaksi\PembelianModel;
 use Carbon\Carbon;
@@ -75,9 +77,29 @@ class PembelianController extends Controller
             $total_harga += $data->total_harga;
 
             BahanBakuModel::where('nama', $data->nama_item)->update([
-                'harga' => $data->harga,
+                'harga' => DB::raw('((harga * stok) + (' . $data->harga . '*' . $data->jumlah . ')) / (stok + ' . $data->jumlah . ')'),
                 'stok' => DB::raw('stok + (' . $data->jumlah . ' * jumlah_per_pack)'),
                 'tanggal_expired' => $data->tanggal
+            ]);
+        }
+
+        $data_bahan_baku = BahanBakuModel::all();
+
+        foreach ($data_bahan_baku as $data) {
+            ProdukDetailModel::where('nama_item', $data->nama)->update([
+                'harga_per_item' => $data->harga
+            ]);
+        }
+
+        $data_produk = ProdukModel::all();
+
+        foreach ($data_produk as $data) {
+            $data_hpp = ProdukDetailModel::select(DB::raw('SUM(jumlah_dipakai * harga_per_item) AS hpp'))->where('kode', $data->kode)->first();
+            $persentase_hpp = ProdukModel::select(DB::raw('(100/harga_jual*hpp) as persentase'))->where('kode', $data->kode)->first();
+
+            ProdukModel::where('kode', $data->kode)->update([
+                'hpp' => $data_hpp->hpp,
+                'harga_jual' => DB::raw(100 . '/' . $persentase_hpp->persentase . '*' . 'hpp') 
             ]);
         }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
+use App\Models\Master\ProdukDetailModel;
 use App\Models\Master\ProdukModel;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,10 @@ class ProdukController extends Controller
             'nama' => $request->input('nama'),
             'hpp' => $request->input('hpp'),
             'harga_jual' => $request->input('harga_jual')
+        ]);
+
+        ProdukDetailModel::where('kode', $request->input('kode'))->update([
+            'nama' => $request->input('nama')
         ]);
 
         return response()->json(['code' => 200]);

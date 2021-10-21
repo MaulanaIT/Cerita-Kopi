@@ -79,7 +79,7 @@ $(document).ready(function() {
             list[6].className = "active list";
         else if (<?php echo json_encode($page); ?> == "Laporan Pembelian")
             list[7].className = "active list";
-        else if (<?php echo json_encode($page); ?> == "Laporan Penjualan")
+        else if (<?php echo json_encode($page); ?> == "Laporan Produk")
             list[8].className = "active list";
 
         list[i].querySelector('a').onclick = function(event) {

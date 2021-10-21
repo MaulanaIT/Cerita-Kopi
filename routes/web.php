@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Laporan\PembelianController as LaporanPembelianController;
-use App\Http\Controllers\Laporan\PenjualanController as LaporanPenjualanController;
+use App\Http\Controllers\Laporan\ProdukController as LaporanProdukController;
 use App\Http\Controllers\Master\BahanBakuController;
 use App\Http\Controllers\Master\HPPProdukController;
 use App\Http\Controllers\Master\PersediaanBahanBakuController;
@@ -74,12 +74,10 @@ Route::group(['prefix' => 'laporan'], function() {
     Route::group(['prefix' => 'pembelian'], function() {
         Route::get('/', [LaporanPembelianController::class, 'index']);
         Route::post('/show', [LaporanPembelianController::class, 'show']);
-        Route::post('/store', [LaporanPembelianController::class, 'store']);
     });
 
-    Route::group(['prefix' => 'penjualan'], function() {
-        Route::get('/', [LaporanPenjualanController::class, 'index']);
-        Route::post('/show', [LaporanPenjualanController::class, 'show']);
-        Route::post('/store', [LaporanPenjualanController::class, 'store']);
+    Route::group(['prefix' => 'produk'], function() {
+        Route::get('/', [LaporanProdukController::class, 'index']);
+        Route::post('/show', [LaporanProdukController::class, 'show']);
     });
 });

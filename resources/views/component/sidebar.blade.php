@@ -78,9 +78,9 @@
             <li class="list">
                 <!-- <b></b>
                 <b></b> -->
-                <a href="/laporan/penjualan" class="col fw-bold text-decoration-none text-white">
+                <a href="/laporan/produk" class="col fw-bold text-decoration-none text-white">
                     <i class="icon fas fa-file-alt text-white"></i>
-                    <span class="title">Penjualan</span>
+                    <span class="title">Produk</span>
                 </a>
             </li>
         </ul>

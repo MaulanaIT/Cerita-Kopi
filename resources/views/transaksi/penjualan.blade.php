@@ -61,6 +61,11 @@
                                     name="edit-nama-produk-{{ $data->id }}" class="d-none form-control"
                                     value="{{ $data->nama_produk }}">
                             </td>
+                            <td class="d-none text-end">
+                                <input type="text" id="edit-hpp-{{ $data->id }}" name="edit-hpp-{{ $data->id }}"
+                                    class="d-none form-control" value="{{ $data->hpp }}"
+                                    oninput="inputNumber(this.id)" readonly>
+                            </td>
                             <td class="text-end">
                                 <div id="harga-{{ $data->id }}">Rp. {{ $harga }}</div>
                                 <input type="text" id="edit-harga-{{ $data->id }}" name="edit-harga-{{ $data->id }}"
@@ -272,6 +277,7 @@
                 data: {
                     id: id,
                     nama_produk: $('#edit-nama-produk-' + id).val(),
+                    hpp: $('#edit-hpp-' + id).val(),
                     harga: $('#edit-harga-' + id).val(),
                     jumlah: $('#edit-jumlah-' + id).val()
                 },
