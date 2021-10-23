@@ -24,7 +24,7 @@ class ProdukController extends Controller
         $end_date = $request->input('end_date');
 
         if ($start_date && $end_date) {
-            $data_penjualan_produk = PenjualanProdukModel::select('nama_produk', 'hpp', 'harga', DB::raw('SUM(jumlah) AS jumlah'), DB::raw('SUM(total_harga) AS total_harga'), 'tanggal', DB::raw('(harga-hpp)*jumlah as laba'))
+            $data_penjualan_produk = PenjualanProdukModel::select('nama_produk', 'hpp', 'harga', DB::raw('SUM(jumlah) AS jumlah'), DB::raw('SUM(total_harga) AS total_harga'), 'tanggal')
                                                         ->where(DB::raw('DATE(tanggal)'), '>=', $start_date)
                                                         ->where(DB::raw('DATE(tanggal)'), '<=', $end_date)
                                                         ->groupBy('nama_produk')

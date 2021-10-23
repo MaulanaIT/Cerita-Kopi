@@ -20,8 +20,8 @@
         </div>
     </div>
     <div class="py-4 p-0 table-responsive">
-        <table id="table-data" class="table table-bordered table-striped table-hover">
-            <thead class="align-middle text-center text-nowrap">
+        <table id="table-data" class="table table-bordered table-striped table-hover text-nowrap">
+            <thead class="align-middle text-center">
                 <tr>
                     <th>No.</th>
                     <th>Nama Produk</th>
@@ -92,13 +92,13 @@
                                 `<td class="text-end">` + hargaFormat(value.harga) + `</td>` +
                                 `<td class="text-center">` + value.jumlah + `</td>` +
                                 `<td class="text-end">` + hargaFormat(value.total_harga) + `</td>` +
-                                `<td class="text-end">` + hargaFormat(value.laba) + `</td>` +
+                                `<td class="text-end">` + hargaFormat((value.harga - value.hpp) * value.jumlah) + `</td>` +
                             `</tr>`);
 
                             hpp += value.hpp;
                             harga += value.harga;
                             totalHarga += value.harga * value.jumlah;
-                            totalLaba += value.laba;
+                            totalLaba += (value.harga - value.hpp) * value.jumlah;
                         });
 
                         $('#rekap-hpp').html(hargaFormat(hpp));
