@@ -76,8 +76,8 @@
             </tbody>
             <tr id="table-total">
                 <td></td>
-                <td></td>
-                <td id="rekap-harga" class="text-end">Rp. 0,00</td>
+                <td class="d-none"></td>
+                <td colspan="2" class="fw-bold text-center">Total</td>
                 <td id="rekap-jumlah" class="text-center">0</td>
                 <td id="rekap-total-harga" class="text-end">Rp. 0,00</td>
                 <td></td>
@@ -110,7 +110,6 @@
                     if (response.code == 200) {
                         $('#table-body-data').empty();
 
-                        let harga = 0;
                         let jumlah = 0;
                         let totalHarga = 0;
 
@@ -130,12 +129,10 @@
                                     `')"><i class="fas fa-trash"></i> Hapus</button></td>` +
                                     `</tr>`);
 
-                                harga += value.harga;
                                 jumlah += value.jumlah;
                                 totalHarga += value.total_harga;
                             });
 
-                            $('#rekap-harga').html(hargaFormat(harga));
                             $('#rekap-jumlah').html(jumlah);
                             $('#rekap-total-harga').html(hargaFormat(totalHarga));
                         }

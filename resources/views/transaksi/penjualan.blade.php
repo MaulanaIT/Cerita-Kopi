@@ -36,6 +36,7 @@
                     <tr>
                         <th>No.</th>
                         <th>Nama</th>
+                        <th class="d-none">HPP</th>
                         <th>Harga</th>
                         <th>Jumlah</th>
                         <th>Total Harga</th>
@@ -189,7 +190,13 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#table-data-pembayaran').DataTable();
+            $('#table-data-pembayaran').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel',
+                    'print'
+                ]
+            });
             $('#table-data-produk').DataTable();
         });
 

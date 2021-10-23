@@ -83,6 +83,14 @@
                     <span class="title">Produk</span>
                 </a>
             </li>
+            <li class="list">
+                <!-- <b></b>
+                <b></b> -->
+                <a href="/laporan/pembayaran" class="col fw-bold text-decoration-none text-white">
+                    <i class="icon fas fa-file-alt text-white"></i>
+                    <span class="title">Pembayaran</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

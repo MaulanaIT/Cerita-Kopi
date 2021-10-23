@@ -33,7 +33,7 @@
                                 <div id="nama-produk-{{ $data->kode }}">{{ $data->nama }}</div>
                                 <input type="text" id="edit-nama-produk-{{ $data->kode }}"
                                     name="edit-nama-produk-{{ $data->kode }}" class="d-none form-control"
-                                    value={{ $data->nama }}>
+                                    value="{{ $data->nama }}"">
                             </td>
                             <td class="text-end">
                                 <div id="hpp-{{ $data->kode }}">Rp. {{ $hpp }}</div>

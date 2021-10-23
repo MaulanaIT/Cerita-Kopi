@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Laporan\PembayaranController;
 use App\Http\Controllers\Laporan\PembelianController as LaporanPembelianController;
 use App\Http\Controllers\Laporan\ProdukController as LaporanProdukController;
 use App\Http\Controllers\Master\BahanBakuController;
@@ -79,5 +80,10 @@ Route::group(['prefix' => 'laporan'], function() {
     Route::group(['prefix' => 'produk'], function() {
         Route::get('/', [LaporanProdukController::class, 'index']);
         Route::post('/show', [LaporanProdukController::class, 'show']);
+    });
+
+    Route::group(['prefix' => 'pembayaran'], function() {
+        Route::get('/', [PembayaranController::class, 'index']);
+        Route::post('/show', [PembayaranController::class, 'show']);
     });
 });
