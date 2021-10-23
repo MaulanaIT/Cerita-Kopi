@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Transaksi\PembelianDetailModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PembelianController extends Controller
 {
@@ -23,8 +24,8 @@ class PembelianController extends Controller
         $end_date = $request->input('end_date');
 
         if ($start_date && $end_date) {
-            $data_pembelian_detail = PembelianDetailModel::where('created_at', '>=', $start_date)
-                                                        ->where('created_at', '<=', $end_date)
+            $data_pembelian_detail = PembelianDetailModel::where(DB::raw('DATE(created_at)'), '>=', $start_date)
+                                                        ->where(DB::raw('DATE(created_at)'), '<=', $end_date)
                                                         ->orderBy('created_at')
                                                         ->get();
         } else {
