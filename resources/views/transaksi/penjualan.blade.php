@@ -190,13 +190,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#table-data-pembayaran').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'excel',
-                    'print'
-                ]
-            });
+            $('#table-data-pembayaran').DataTable();
             $('#table-data-produk').DataTable();
         });
 
