@@ -75,6 +75,8 @@
                 },
                 success: function(response) {
                     if (response.code == 200) {
+                        $('#table-data').DataTable().clear();
+                        $('#table-data').DataTable().destroy();
                         $('#table-body-data').empty();
 
                         let hpp = 0;
@@ -104,7 +106,12 @@
                         $('#rekap-total-harga').html(hargaFormat(totalHarga));
                         $('#rekap-laba').html(hargaFormat(totalLaba));
 
-                        $('#table-data').DataTable();
+                        $('#table-data').DataTable({
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {extend: 'excel', className: 'btn btn-success'}
+                            ]
+                        });
                     }
                 }
             });

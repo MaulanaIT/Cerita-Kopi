@@ -102,7 +102,12 @@
 
                         $('#rekap-jumlah').html(hargaFormat(jumlah));
 
-                        $('#table-data').DataTable();
+                        $('#table-data').DataTable({
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {extend: 'excel', className: 'btn btn-success'}
+                            ]
+                        });
                     }
                 }
             });

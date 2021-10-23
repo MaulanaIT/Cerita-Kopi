@@ -103,7 +103,12 @@ let endDate = "{{$curDate}}";
                     $('#rekap-jumlah').html(jumlah);
                     $('#rekap-total-harga').html(hargaFormat(totalHarga));
 
-                    $('#table-data').DataTable();
+                    $('#table-data').DataTable({
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {extend: 'excel', className: 'btn btn-success'}
+                            ]
+                        });
                 }
             }
         });
