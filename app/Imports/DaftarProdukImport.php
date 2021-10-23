@@ -20,6 +20,7 @@ class DaftarProdukImport implements ToModel
     public function model(array $row)
     {
         return PenjualanProdukDumModel::create([
+            'kode_produk' => ProdukModel::where('nama', $row[0])->first()->kode,
             'nama_produk' => $row[0],
             'hpp' => ProdukModel::where('nama', $row[0])->first()->hpp,
             'harga' => $row[2],
