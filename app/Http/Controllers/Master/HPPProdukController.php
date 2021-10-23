@@ -61,6 +61,7 @@ class HPPProdukController extends Controller
     function store(Request $request) {
         $insert = ProdukDetailDumModel::create([
             'kode' => $request->input('kode'),
+            'nama' => $request->input('nama'),
             'nama_item' => $request->input('nama_item'), 
             'jumlah_dipakai' => $request->input('jumlah_dipakai'),
             'satuan_dipakai' => $request->input('satuan_dipakai'),
