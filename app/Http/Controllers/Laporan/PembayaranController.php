@@ -27,7 +27,8 @@ class PembayaranController extends Controller
 
         if ($start_date && $end_date) {
             $data_penjualan_pembayaran = PenjualanPembayaranModel::select('jenis_pembayaran', 'jumlah_pembayaran', 'jenis_kartu', 'tanggal')
-                                                        ->whereBetween(DB::raw('DATE(tanggal)'), [$start_date, $end_date])
+                                                        ->where(DB::raw('DATE(tanggal)'), '>=', $start_date)
+                                                        ->where(DB::raw('DATE(tanggal)'), '<=', $start_date)
                                                         ->where('jenis_pembayaran', $request->input('jenis_pembayaran'))
                                                         ->get();
         } else {

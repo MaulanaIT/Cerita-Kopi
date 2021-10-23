@@ -23,7 +23,8 @@ class PembelianController extends Controller
         $end_date = $request->input('end_date');
 
         if ($start_date && $end_date) {
-            $data_pembelian_detail = PembelianDetailModel::whereBetween('created_at', [$start_date, $end_date])
+            $data_pembelian_detail = PembelianDetailModel::where('created_at', '>=', $start_date)
+                                                        ->where('created_at', '<=', $start_date)
                                                         ->orderBy('created_at')
                                                         ->get();
         } else {
