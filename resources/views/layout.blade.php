@@ -81,6 +81,8 @@ $(document).ready(function() {
             list[7].className = "active list";
         else if (<?php echo json_encode($page); ?> == "Laporan Produk")
             list[8].className = "active list";
+        else if (<?php echo json_encode($page); ?> == "Laporan Pembayaran")
+            list[9].className = "active list";
 
         list[i].querySelector('a').onclick = function(event) {
             let j = 0;
