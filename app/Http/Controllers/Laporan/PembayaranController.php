@@ -24,13 +24,21 @@ class PembayaranController extends Controller
     function show(Request $request) {
         $start_date = $request->input('start_date');
         $end_date = $request->input('end_date');
+        $jenis_pembayaran = $request->input('jenis_pembayaran');
 
         if ($start_date && $end_date) {
-            $data_penjualan_pembayaran = PenjualanPembayaranModel::select('jenis_pembayaran', 'jumlah_pembayaran', 'jenis_kartu', 'tanggal')
-                                                        ->where(DB::raw('DATE(tanggal)'), '>=', $start_date)
-                                                        ->where(DB::raw('DATE(tanggal)'), '<=', $end_date)
-                                                        ->where('jenis_pembayaran', $request->input('jenis_pembayaran'))
-                                                        ->get();
+            if ($jenis_pembayaran == 'all' || $jenis_pembayaran == 'semua') {
+                $data_penjualan_pembayaran = PenjualanPembayaranModel::select('jenis_pembayaran', 'jumlah_pembayaran', 'jenis_kartu', 'tanggal')
+                                                            ->where(DB::raw('DATE(tanggal)'), '>=', $start_date)
+                                                            ->where(DB::raw('DATE(tanggal)'), '<=', $end_date)
+                                                            ->get();
+            } else {
+                $data_penjualan_pembayaran = PenjualanPembayaranModel::select('jenis_pembayaran', 'jumlah_pembayaran', 'jenis_kartu', 'tanggal')
+                                                            ->where(DB::raw('DATE(tanggal)'), '>=', $start_date)
+                                                            ->where(DB::raw('DATE(tanggal)'), '<=', $end_date)
+                                                            ->where('jenis_pembayaran', $request->input('jenis_pembayaran'))
+                                                            ->get();
+            }
         } else {
             $data_penjualan_pembayaran = [];
         }

@@ -17,6 +17,7 @@
                     <label for="jenis-pembayaran" class="col-form-label">Jenis Pembayaran</label>
                     <select name="jenis-pembayaran" id="jenis-pembayaran" class="form-select">
                         @if (count($data_jenis_pembayaran) > 0)
+                            <option value="all">All</option>
                             @foreach ($data_jenis_pembayaran as $data)
                                 <option value="{{$data->nama}}">{{$data->nama}}</option>
                             @endforeach
@@ -91,7 +92,7 @@
                         $.each(response.data_penjualan_pembayaran, function(index, value) {
                             $('#table-body-data').append(`<tr>` +
                                 `<td class="text-center">` + ++index + `.</td>` +
-                                `<td>` + value.jenis_pembayaran + `</td>` +
+                                `<td class="text-center">` + value.jenis_pembayaran + `</td>` +
                                 `<td class="text-end">` + hargaFormat(value.jumlah_pembayaran) + `</td>` +
                                 `<td class="text-center">` + value.jenis_kartu + `</td>` +
                                 `<td class="text-center">` + value.tanggal + `</td>` +
