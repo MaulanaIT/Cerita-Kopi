@@ -113,7 +113,7 @@ class PenjualanController extends Controller
             }
             
             foreach ($data_penjualan_produk as $data) {
-                $data_produk_detail = ProdukDetailModel::where('nama', $data->nama_produk)->get();
+                $data_produk_detail = ProdukDetailModel::where('kode', $data->kode_produk)->get();
 
                 foreach ($data_produk_detail as $item) {
                     BahanBakuModel::where('nama', $item->nama_item)->update([

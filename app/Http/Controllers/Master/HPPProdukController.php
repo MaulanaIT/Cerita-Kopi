@@ -41,6 +41,7 @@ class HPPProdukController extends Controller
             ProdukDetailModel::create([
                 'kode' => $data->kode,
                 'nama' => $data->nama,
+                'kode_item' => $data->kode_item,
                 'nama_item' => $data->nama_item, 
                 'jumlah_dipakai' => $data->jumlah_dipakai,
                 'satuan_dipakai' => $data->satuan_dipakai,
@@ -62,6 +63,7 @@ class HPPProdukController extends Controller
         $insert = ProdukDetailDumModel::create([
             'kode' => $request->input('kode'),
             'nama' => $request->input('nama'),
+            'kode_item' => $request->input('kode_item'),
             'nama_item' => $request->input('nama_item'), 
             'jumlah_dipakai' => $request->input('jumlah_dipakai'),
             'satuan_dipakai' => $request->input('satuan_dipakai'),

@@ -18,7 +18,7 @@
                         <select name="nama-item" id="nama-item" class="form-select" onchange="selectItem(this.id)" required>
                             <option value="">-- Pilih Item --</option>
                             @foreach ($data_bahan_baku as $data)
-                                <option value="{{ $data->nama }}">{{ $data->nama }}</option>
+                                <option value="{{ $data->kode }}">{{ $data->nama }}</option>
                             @endforeach
                         </select>
                         <div class="px-0 row">
@@ -192,7 +192,8 @@
                 data: {
                     kode: $('#kode-produk').val(),
                     nama: $('#nama-produk').val(),
-                    nama_item: $('#nama-item').val(),
+                    kode_item: $('#nama-item').val(),
+                    nama_item: $("#nama-item option:selected").text(),
                     jumlah_dipakai: $('#jumlah-dipakai').val(),
                     satuan_dipakai: $('#satuan-dipakai').val(),
                     harga_per_item: $('#harga-item-per-unit').val(),
@@ -241,7 +242,7 @@
         }
 
         function selectItem(id) {
-            let variable = $('#' + id).val();
+            let variable = $('#' + id + ' option:selected').text();
 
             $.get(`bahan-baku/select-item/` + variable, function(data, status) {
                 data.forEach(x => {
