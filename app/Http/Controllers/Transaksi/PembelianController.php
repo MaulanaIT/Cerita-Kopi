@@ -87,7 +87,7 @@ class PembelianController extends Controller
 
         foreach ($data_bahan_baku as $data) {
             ProdukDetailModel::where('nama_item', $data->nama)->update([
-                'harga_per_item' => $data->harga
+                'harga_per_item' => $data->harga/$data->jumlah_per_pack
             ]);
         }
 

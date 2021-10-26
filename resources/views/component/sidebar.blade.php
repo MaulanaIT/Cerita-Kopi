@@ -80,7 +80,7 @@
                 <b></b> -->
                 <a href="/laporan/produk" class="col fw-bold text-decoration-none text-white">
                     <i class="icon fas fa-file-alt text-white"></i>
-                    <span class="title">Produk</span>
+                    <span class="title">Penjualan Produk</span>
                 </a>
             </li>
             <li class="list">
