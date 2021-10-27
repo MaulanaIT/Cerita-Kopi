@@ -1,8 +1,8 @@
 <div id="sidebar" class="active cerita-kopi-color h-100 navigation position-fixed" style="z-index: 2;">
     <div class="align-items-center cerita-kopi-logo py-3 px-2 position-relative">
-        <img src="{{asset('image/Logo.png')}}" alt="Logo Cerita Kopi" height="48px">
+        <img src="{{ asset('image/Logo.png') }}" alt="Logo Cerita Kopi" height="48px">
         <span class="col-form-label ps-3 position-absolute">
-            <img src="{{asset('image/Title.png')}}" alt="Logo Cerita Kopi" height="36px">
+            <img src="{{ asset('image/Title.png') }}" alt="Logo Cerita Kopi" height="36px">
         </span>
     </div>
     <div class="overflow-auto ps-3">
