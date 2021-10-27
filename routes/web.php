@@ -20,7 +20,7 @@ Route::post('/register/store', [AuthController::class, 'store']);
 
 Route::group(['middleware' => 'auth', 'role:Admin'], function() {
 
-    Route::get('/login', [AuthController::class, 'logout']);
+    Route::get('/logout', [AuthController::class, 'logout']);
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
 

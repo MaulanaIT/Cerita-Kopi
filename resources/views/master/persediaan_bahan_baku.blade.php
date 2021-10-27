@@ -61,7 +61,19 @@
                                     <input type="text" id="edit-stok-{{$data->kode}}" name="edit-stok-{{$data->kode}}" class="d-none form-control text-center" value="{{$data->stok}}" oninput="inputNumber(this.id)" required>
                                 </td>
                                 <td class="text-center">
-                                    <div id="tanggal-expired-{{$data->kode}}">{{date('d-m-Y', strtotime($data->tanggal_expired))}}</div>
+                                    @php
+                                        $soon = date('d-m-Y', time() + 259200);
+                                        $isExpired = date('d-m-Y', time() + 0);
+                                    @endphp
+                                    @if (date('d-m-Y', strtotime($data->tanggal_expired)) <= $isExpired)
+                                        <div id="tanggal-expired-{{$data->kode}}" class="text-danger">{{date('d-m-Y', strtotime($data->tanggal_expired))}}
+                                            <div class="fw-bold text-danger text-size-2">Expired</div></div>
+                                    @elseif (date('d-m-Y', strtotime($data->tanggal_expired)) <= $soon)
+                                        <div id="tanggal-expired-{{$data->kode}}" class="text-danger">{{date('d-m-Y', strtotime($data->tanggal_expired))}}
+                                            <div class="fw-bold text-danger text-size-2">Expired soon</div></div>
+                                    @else
+                                        <div id="tanggal-expired-{{$data->kode}}">{{date('d-m-Y', strtotime($data->tanggal_expired))}}</div>
+                                    @endif
                                     <input type="date" id="edit-tanggal-expired-{{$data->kode}}" name="edit-tanggal-expired-{{$data->kode}}" class="d-none form-control text-center" value="{{date('Y-m-d', strtotime($data->tanggal_expired))}}" required>
                                 </td>
                                 <td class="text-center text-nowrap">

@@ -22,7 +22,13 @@ class AuthController extends Controller
     }
 
     public function login(Request $request) {
-        if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
+        Auth::attempt([
+            'name' => $request->input('username'), 
+            'email' => $request->input('email'), 
+            'password' => $request->input('password')
+        ]);
+
+        if (Auth::check()) {
             return redirect()->to('/dashboard');
         }
         
@@ -35,7 +41,7 @@ class AuthController extends Controller
         if (count($check) > 0) {
             $code = 407;
         } else {
-            $register = User::create([
+            $register = AuthModel::create([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'password' => bcrypt($request->input('password')),

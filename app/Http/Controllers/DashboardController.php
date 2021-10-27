@@ -87,6 +87,9 @@ class DashboardController extends Controller
         $chartPembelian->colours = $coloursPembelian;
         $chartPembelian->borders = $bordersPembelian;
 
-        return view ('dashboard', compact('chartPembelian', 'chartPenjualan', 'page', 'title', 'year'));
+        //Notification
+        $expired = expiredBahanBaku();
+
+        return view ('dashboard', compact('chartPembelian', 'chartPenjualan', 'expired', 'page', 'title', 'year'));
     }
 }

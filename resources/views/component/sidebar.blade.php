@@ -29,7 +29,19 @@
                 <!-- <b></b>
                 <b></b> -->
                 <a href="/master/persediaan-bahan-baku" class="col fw-bold text-decoration-none text-white">
-                    <i class="icon fas fa-server text-white"></i>
+                    <i class="icon fas fa-server">
+                        @if (count($expired) > 99)
+                            <div class="align-items-center bg-danger justify-content-center position-absolute row text-center text-size-2"
+                                style="border-radius: 50%; color: white !important; height: 20px; width: 20px;">
+                                99
+                            </div>
+                        @else
+                            <div class="align-items-center bg-danger justify-content-center position-absolute row text-center text-size-2"
+                                style="border-radius: 50%; color: white !important; height: 20px; width: 20px;">
+                                {{ count($expired) }}
+                            </div>
+                        @endif
+                    </i>
                     <span class="title">Persediaan Bahan Baku</span>
                 </a>
             </li>
