@@ -31,7 +31,10 @@ class PenjualanController extends Controller
         $data_penjualan_pembayaran_detail = PenjualanPembayaranDumModel::orderBy('tanggal')->get();
         $data_penjualan_produk_detail = PenjualanProdukDumModel::orderBy('nama_produk')->get();
 
-        return view('transaksi.penjualan', compact('curDate', 'data_penjualan_pembayaran_detail', 'data_penjualan_produk_detail', 'data_produk', 'page', 'title'));
+        //Notification
+        $expired = expiredBahanBaku();
+
+        return view('transaksi.penjualan', compact('curDate', 'data_penjualan_pembayaran_detail', 'data_penjualan_produk_detail', 'data_produk', 'expired', 'page', 'title'));
     }
 
     function import(Request $request) {

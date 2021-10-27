@@ -15,7 +15,10 @@ class ProdukController extends Controller
 
         $data_produk = ProdukModel::select('*')->orderBy('nama')->get();
 
-        return view ('master.produk', compact('data_produk', 'page', 'title'));
+        //Notification
+        $expired = expiredBahanBaku();
+
+        return view ('master.produk', compact('data_produk', 'expired', 'page', 'title'));
     }
 
     function update(Request $request) {

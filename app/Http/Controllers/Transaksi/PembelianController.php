@@ -27,7 +27,10 @@ class PembelianController extends Controller
 
         PembelianDetailModel::where('nomor', $nomor_transaksi)->delete();
 
-        return view('transaksi.pembelian', compact('curDate', 'data_item', 'nomor_transaksi', 'page', 'title'));
+        //Notification
+        $expired = expiredBahanBaku();
+
+        return view('transaksi.pembelian', compact('curDate', 'data_item', 'expired', 'nomor_transaksi', 'page', 'title'));
     }
 
     function show($nomor) {

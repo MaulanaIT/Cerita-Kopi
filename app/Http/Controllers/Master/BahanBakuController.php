@@ -18,7 +18,10 @@ class BahanBakuController extends Controller
         $data_bahan_baku = BahanBakuModel::select('*')->orderBy('nama')->get();
         $data_bahan_baku_satuan = BahanBakuSatuanModel::select('*')->orderBy('nama')->get();
 
-        return view('master.bahan_baku', compact('data_bahan_baku_satuan', 'data_bahan_baku', 'page', 'title'));
+        //Notification
+        $expired = expiredBahanBaku();
+
+        return view('master.bahan_baku', compact('data_bahan_baku_satuan', 'data_bahan_baku', 'expired', 'page', 'title'));
     }
 
     function store(Request $request) {

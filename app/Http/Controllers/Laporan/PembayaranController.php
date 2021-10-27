@@ -18,7 +18,10 @@ class PembayaranController extends Controller
         $curDate = Carbon::today()->toDateString();
         $data_jenis_pembayaran = TypePembayaranModel::orderBy('nama')->get();
 
-        return view('laporan.pembayaran', compact('curDate', 'data_jenis_pembayaran', 'page', 'title'));
+        //Notification
+        $expired = expiredBahanBaku();
+
+        return view('laporan.pembayaran', compact('curDate', 'data_jenis_pembayaran', 'expired', 'page', 'title'));
     }
 
     function show(Request $request) {

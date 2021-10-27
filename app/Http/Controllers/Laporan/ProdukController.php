@@ -16,7 +16,10 @@ class ProdukController extends Controller
 
         $curDate = Carbon::today()->toDateString();
 
-        return view('laporan.produk', compact('curDate', 'page', 'title'));
+        //Notification
+        $expired = expiredBahanBaku();
+
+        return view('laporan.produk', compact('curDate', 'expired', 'page', 'title'));
     }
 
     function show(Request $request) {

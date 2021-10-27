@@ -25,7 +25,10 @@ class HPPProdukController extends Controller
 
         ProdukDetailDumModel::truncate();
 
-        return view ('master.hpp_produk', compact('data_bahan_baku', 'data_bahan_baku_satuan', 'page', 'title'));
+        //Notification
+        $expired = expiredBahanBaku();
+
+        return view ('master.hpp_produk', compact('data_bahan_baku', 'data_bahan_baku_satuan', 'expired', 'page', 'title'));
     }
 
     function show($kode) {

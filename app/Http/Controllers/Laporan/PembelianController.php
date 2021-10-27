@@ -16,7 +16,10 @@ class PembelianController extends Controller
 
         $curDate = Carbon::today()->toDateString();
 
-        return view('laporan.pembelian', compact('curDate', 'page', 'title'));
+        //Notification
+        $expired = expiredBahanBaku();
+
+        return view('laporan.pembelian', compact('curDate', 'expired', 'page', 'title'));
     }
 
     function show(Request $request) {
