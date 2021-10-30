@@ -9,37 +9,42 @@ use App\Http\Controllers\Master\BahanBakuController;
 use App\Http\Controllers\Master\HPPProdukController;
 use App\Http\Controllers\Master\PersediaanBahanBakuController;
 use App\Http\Controllers\Master\ProdukController;
+use App\Http\Controllers\Master\UserController;
 use App\Http\Controllers\Transaksi\PembelianController;
 use App\Http\Controllers\Transaksi\PenjualanController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('post-login');
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/register/store', [AuthController::class, 'store']);
 
-Route::group(['middleware' => 'auth', 'role:Admin'], function() {
+Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/logout', [AuthController::class, 'logout']);
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
-    Route::group(['prefix' => 'master', 'middleware' => ['auth', 'role:Admin']], function() {
+    Route::group(['prefix' => 'master'], function() {
     
-        Route::group(['prefix' => 'bahan-baku'], function() {
+        Route::group(['prefix' => 'user', 'middleware' => ['auth', 'role:Owner']], function() {
+            Route::get('/', [UserController::class, 'index']);
+            Route::post('/delete/{id}', [AuthController::class, 'delete']);
+            Route::post('/store', [AuthController::class, 'store']);
+            Route::post('/update', [AuthController::class, 'update']);
+        });
+        Route::group(['prefix' => 'bahan-baku', 'middleware' => ['auth', 'role:Owner,Gudang']], function() {
             Route::get('/', [BahanBakuController::class, 'index']);
             Route::get('/select-item/{nama}', [BahanBakuController::class, 'selectItem']);
             Route::post('/store', [BahanBakuController::class, 'store']);
         });
     
-        Route::group(['prefix' => 'persediaan-bahan-baku'], function() {
+        Route::group(['prefix' => 'persediaan-bahan-baku', 'middleware' => ['auth', 'role:Owner,Gudang']], function() {
             Route::get('/', [PersediaanBahanBakuController::class, 'index']);
             Route::post('/delete/{kode}', [PersediaanBahanBakuController::class, 'delete']);
             Route::post('/update', [PersediaanBahanBakuController::class, 'update']);
             Route::post('/store', [PersediaanBahanBakuController::class, 'store']);
         });
     
-        Route::group(['prefix' => 'hpp-produk'], function() {
+        Route::group(['prefix' => 'hpp-produk', 'middleware' => ['auth', 'role:Owner,Kasir']], function() {
             Route::get('/', [HPPProdukController::class, 'index']);
             Route::get('/show/{kode}', [HPPProdukController::class, 'show']);
             Route::post('/delete', [HPPProdukController::class, 'delete']);
@@ -47,7 +52,7 @@ Route::group(['middleware' => 'auth', 'role:Admin'], function() {
             Route::post('/store', [HPPProdukController::class, 'store']);
         });
     
-        Route::group(['prefix' => 'produk'], function() {
+        Route::group(['prefix' => 'produk', 'middleware' => ['auth', 'role:Owner,Kasir']], function() {
             Route::get('/', [ProdukController::class, 'index']);
             Route::post('/delete/{kode}', [ProdukController::class, 'delete']);
             Route::post('/update', [ProdukController::class, 'update']);
@@ -57,7 +62,7 @@ Route::group(['middleware' => 'auth', 'role:Admin'], function() {
     
     Route::group(['prefix' => 'transaksi'], function() {
     
-        Route::group(['prefix' => 'pembelian'], function() {
+        Route::group(['prefix' => 'pembelian', 'middleware' => ['auth', 'role:Owner,Gudang']], function() {
             Route::get('/', [PembelianController::class, 'index']);
             Route::get('/show/{nomor}', [PembelianController::class, 'show']);
             Route::post('/delete', [PembelianController::class, 'delete']);
@@ -65,7 +70,7 @@ Route::group(['middleware' => 'auth', 'role:Admin'], function() {
             Route::post('/store', [PembelianController::class, 'store']);
         });
     
-        Route::group(['prefix' => 'penjualan'], function() {
+        Route::group(['prefix' => 'penjualan', 'middleware' => ['auth', 'role:Owner,Kasir']], function() {
             Route::get('/', [PenjualanController::class, 'index']);
             Route::post('/delete-pembayaran', [PenjualanController::class, 'deletePembayaran']);
             Route::post('/delete-produk', [PenjualanController::class, 'deleteProduk']);
@@ -77,7 +82,7 @@ Route::group(['middleware' => 'auth', 'role:Admin'], function() {
         });
     });
     
-    Route::group(['prefix' => 'laporan'], function() {
+    Route::group(['prefix' => 'laporan', 'middleware' => ['auth', 'role:Owner']], function() {
     
         Route::group(['prefix' => 'pembelian'], function() {
             Route::get('/', [LaporanPembelianController::class, 'index']);

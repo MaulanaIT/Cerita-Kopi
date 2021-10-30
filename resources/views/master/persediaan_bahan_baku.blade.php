@@ -28,7 +28,6 @@
                     @endphp
                     @foreach ($data_bahan_baku as $data)
                         <tr>
-                            <form>
                                 <td class="text-center">{{++$i}}.</td>
                                 <td>{{$data->kode}}</td>
                                 <td class="text-nowrap">{{$data->nama}}</td>
@@ -62,13 +61,12 @@
                                 </td>
                                 <td class="text-center">
                                     @php
-                                        $soon = date('d-m-Y', time() + 259200);
-                                        $isExpired = date('d-m-Y', time() + 0);
+                                        $timeExpired = (strtotime($data->tanggal_expired) - strtotime(date('d-m-Y'))) / 216000;
                                     @endphp
-                                    @if (date('d-m-Y', strtotime($data->tanggal_expired)) <= $isExpired)
+                                    @if ($timeExpired <= 0)
                                         <div id="tanggal-expired-{{$data->kode}}" class="text-danger">{{date('d-m-Y', strtotime($data->tanggal_expired))}}
                                             <div class="fw-bold text-danger text-size-2">Expired</div></div>
-                                    @elseif (date('d-m-Y', strtotime($data->tanggal_expired)) <= $soon)
+                                    @elseif ($timeExpired <= 3)
                                         <div id="tanggal-expired-{{$data->kode}}" class="text-danger">{{date('d-m-Y', strtotime($data->tanggal_expired))}}
                                             <div class="fw-bold text-danger text-size-2">Expired soon</div></div>
                                     @else
@@ -81,7 +79,6 @@
                                     <a id="ubah-{{$data->kode}}" class="btn btn-warning px-3" onclick="ubahData('{{$data->kode}}')"><i class="fas fa-edit"></i>&ensp;Ubah</a>
                                     <a id="hapus-{{$data->kode}}" class="btn btn-danger px-3" onclick="hapusData('{{$data->kode}}')"><i class="fas fa-trash"></i>&ensp;Hapus</a>
                                 </td>
-                            </form>
                         </tr>
                     @endforeach
                 @endif
@@ -114,7 +111,7 @@
 
         function terapkanData(kodeItem) {
             $.ajax({
-                url: '/master/persediaan-bahan-baku/update/',
+                url: '/master/persediaan-bahan-baku/update',
                 type: 'POST',
                 data: {
                     kode: kodeItem,

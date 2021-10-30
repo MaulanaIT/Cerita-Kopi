@@ -86,7 +86,7 @@
 
         function terapkanData(kodeItem) {
             $.ajax({
-                url: '/master/produk/update/',
+                url: '/master/produk/update',
                 type: 'POST',
                 data: {
                     kode: kodeItem,

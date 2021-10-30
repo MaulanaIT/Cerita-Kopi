@@ -44,8 +44,8 @@ class AuthController extends Controller
             $register = AuthModel::create([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
-                'password' => bcrypt($request->input('password')),
-                'role' => 'Admin'
+                'password' => Hash::make($request->input('password')),
+                'role' => $request->input('role')
             ]);
     
             if ($register) {
@@ -56,6 +56,23 @@ class AuthController extends Controller
         }
         
         return response()->json(['code' => $code]);
+    }
+
+    public function update(Request $request) {
+        AuthModel::where('id', $request->input('id'))->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+            'role' => $request->input('role')
+        ]);
+
+        return response()->json(['code' => 200]);
+    }
+
+    public function delete($id) {
+        AuthModel::where('id', $id)->delete();
+
+        return response()->json(['code' => 200]);
     }
 
     public function logout() {

@@ -79,8 +79,8 @@
                                     </div>
                                     <button type="submit" class="btn cerita-kopi-color fw-bold mt-2 mt-lg-4 p-lg-3 text-white w-100"
                                         style="border-radius: 32px;">Masuk</button>
-                                    <input class="btn bg-white cerita-kopi-text-color fw-bold mt-2 p-lg-3 w-100"
-                                        style="border-radius: 32px" value="Daftar" onclick="register();">
+                                    {{-- <input class="btn bg-white cerita-kopi-text-color fw-bold mt-2 p-lg-3 w-100"
+                                        style="border-radius: 32px" value="Daftar" onclick="register();"> --}}
                                 </div>
                             </div>
                         </form>
