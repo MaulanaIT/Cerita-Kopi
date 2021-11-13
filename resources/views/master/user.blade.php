@@ -10,25 +10,28 @@
                 <div class="card-body shadow">
                     <p class="fw-bold fs-5 m-0 text-secondary">Tambah Data User</p>
                     <div class="mt-2">
-                        <label for="username" class="col-form-label">Username</label>
-                        <input type="text" id="username" name="username" class="form-control" maxlength="255" required>
-                        <label for="email" class="col-form-label">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" maxlength="255" required>
-                        <label for="password" class="col-form-label">Password</label>
-                        <input type="password" id="password" name="password" class="form-control" maxlength="255"
-                            required>
-                        <label for="role" class="col-form-label">Role</label>
-                        <select name="role" id="role" class="form-select">
-                            @if (count($data_role) > 0)
-                                @foreach ($data_role as $data)
-                                    <option value="{{ $data->name }}">{{ $data->name }}</option>
-                                @endforeach
-                            @else
-                                <option value="">-- Data Role Tidak Tersedia --</option>
-                            @endif
-                        </select>
-                        <button class="btn btn-success mt-2 w-100" onclick="simpanData()">Simpan</button>
-                        <input class="btn btn-danger mt-2 w-100" value="Bersihkan" onclick="clearForm()">
+                        <form action="/master/user/store" method="POST">
+                            @csrf
+                            <label for="username" class="col-form-label">Username</label>
+                            <input type="text" id="username" name="username" class="form-control" maxlength="255" required>
+                            <label for="email" class="col-form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" maxlength="255" required>
+                            <label for="password" class="col-form-label">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" maxlength="255"
+                                required>
+                            <label for="role" class="col-form-label">Role</label>
+                            <select name="role" id="role" class="form-select" required>
+                                @if (count($data_role) > 0)
+                                    @foreach ($data_role as $data)
+                                        <option value="{{ $data->name }}">{{ $data->name }}</option>
+                                    @endforeach
+                                @else
+                                    <option value="">-- Data Role Tidak Tersedia --</option>
+                                @endif
+                            </select>
+                            <button class="btn btn-success mt-2 w-100">Simpan</button>
+                            <input type="reset" class="btn btn-danger mt-2 w-100" value="Bersihkan">
+                        </form>
                     </div>
                 </div>
             </div>

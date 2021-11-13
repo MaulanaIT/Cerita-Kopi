@@ -48,6 +48,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script src="{{asset('DataTables/datatables.min.js')}}"></script>
 </body>
@@ -63,38 +64,38 @@ $(document).ready(function() {
         }
     });
 
-    for (let i = 0; i < list.length; i++) {
-        if (<?php echo json_encode($page); ?> == "Dashboard")
-            list[0].className = "active list";
-        else if (<?php echo json_encode($page); ?> == "Bahan Baku")
-            list[1].className = "active list";
-        else if (<?php echo json_encode($page); ?> == "Persediaan Bahan Baku")
-            list[2].className = "active list";
-        else if (<?php echo json_encode($page); ?> == "Produk")
-            list[3].className = "active list";
-        else if (<?php echo json_encode($page); ?> == "HPP Produk")
-            list[4].className = "active list";
-        else if (<?php echo json_encode($page); ?> == "Pembelian")
-            list[5].className = "active list";
-        else if (<?php echo json_encode($page); ?> == "Penjualan")
-            list[6].className = "active list";
-        else if (<?php echo json_encode($page); ?> == "Laporan Pembelian")
-            list[7].className = "active list";
-        else if (<?php echo json_encode($page); ?> == "Laporan Produk")
-            list[8].className = "active list";
-        else if (<?php echo json_encode($page); ?> == "Laporan Pembayaran")
-            list[9].className = "active list";
+    // for (let i = 0; i < list.length; i++) {
+        // if (<?php echo json_encode($page); ?> == "Dashboard")
+        //     list[0].className = "active list";
+        // else if (<?php echo json_encode($page); ?> == "Bahan Baku")
+        //     list[1].className = "active list";
+        // else if (<?php echo json_encode($page); ?> == "Persediaan Bahan Baku")
+        //     list[2].className = "active list";
+        // else if (<?php echo json_encode($page); ?> == "Produk")
+        //     list[3].className = "active list";
+        // else if (<?php echo json_encode($page); ?> == "HPP Produk")
+        //     list[4].className = "active list";
+        // else if (<?php echo json_encode($page); ?> == "Pembelian")
+        //     list[5].className = "active list";
+        // else if (<?php echo json_encode($page); ?> == "Penjualan")
+        //     list[6].className = "active list";
+        // else if (<?php echo json_encode($page); ?> == "Laporan Pembelian")
+        //     list[7].className = "active list";
+        // else if (<?php echo json_encode($page); ?> == "Laporan Produk")
+        //     list[8].className = "active list";
+        // else if (<?php echo json_encode($page); ?> == "Laporan Pembayaran")
+        //     list[9].className = "active list";
 
-        list[i].querySelector('a').onclick = function(event) {
-            let j = 0;
+        // list[i].querySelector('a').onclick = function(event) {
+        //     let j = 0;
 
-            while (j < list.length) {
-                list[j++].className = 'list';
-            }
+        //     while (j < list.length) {
+        //         list[j++].className = 'list';
+        //     }
 
-            list[i].className = 'list active';
-        }
-    }
+        //     list[i].className = 'list active';
+        // }
+    // }
     
     let listTitle = document.querySelectorAll('.list-title');
 
@@ -120,6 +121,30 @@ $(document).ready(function() {
         if ($(this).val() == '')
             $(this).val(0)
     });
+});
+
+window.addEventListener('resize', function() {
+    let listTitle = document.querySelectorAll('.list-title');
+
+    if (window.innerWidth < 762) {
+        document.getElementById('sidebar').classList.remove('active');
+        document.getElementById('toggle').classList.remove('active');
+        document.getElementById('content').classList.remove('active');
+        document.getElementById('main').classList.remove('active');
+
+        for (let i = 0; i < listTitle.length; i++) {
+            listTitle[i].className = "d-none list-title";
+        }
+    } else {
+        document.getElementById('sidebar').classList.add('active');
+        document.getElementById('toggle').classList.add('active');
+        document.getElementById('content').classList.add('active');
+        document.getElementById('main').classList.add('active');
+
+        for (let i = 0; i < listTitle.length; i++) {
+            listTitle[i].className = "list-title";
+        }
+    }
 });
 
 function toggleNavigation() {
@@ -155,7 +180,7 @@ function hargaFormat(harga) {
 	ribuan 	= reverse.match(/\d{1,3}/g);
 	ribuan	= ribuan.join('.').split('').reverse().join('');
 
-    return 'Rp. ' + ribuan + ',00';
+    return 'Rp. ' + ribuan;
 }
 
 function dateFormat(date) {

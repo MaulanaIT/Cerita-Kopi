@@ -12,7 +12,13 @@ class AuthController extends Controller
 {
     public function index() {
         if (Auth::check()) {
-            return redirect()->to('/dashboard');
+            if (auth()->user()->role == "Owner") {
+                return redirect()->to('/dashboard');
+            } else if (auth()->user()->role == "Gudang") {
+                return redirect()->to('/master/produk');
+            } else if (auth()->user()->role == "Kasir") {
+                return redirect()->to('/master/bahan-baku');
+            }
         }
 
         $page = 'Login';
@@ -42,7 +48,7 @@ class AuthController extends Controller
             $code = 407;
         } else {
             $register = AuthModel::create([
-                'name' => $request->input('name'),
+                'name' => $request->input('username'),
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
                 'role' => $request->input('role')

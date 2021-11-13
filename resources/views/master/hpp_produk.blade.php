@@ -263,13 +263,13 @@
         }
 
         function kalkulasiHargaPerItem() {
-            $('#harga-item-per-unit').val(parseInt(parseInt($('#jumlah-dipakai').val()) / parseInt($('#jumlah-per-pack').val()) *
-                parseInt($('#harga-item').val())));
+            $('#harga-item-per-unit').val(parseFloat(parseInt($('#jumlah-dipakai').val()) / parseInt($('#jumlah-per-pack').val()) *
+                parseFloat($('#harga-item').val())).toFixed(2));
         }
 
         function kalkulasiLaba() {
-            $('#laba-produk').html('Laba Produk : ' + hargaFormat(parseFloat($('#harga-jual-aktual').val()) - parseFloat($(
-                '#hpp-aktual').val())));
+            $('#laba-produk').html('Laba Produk : ' + hargaFormat(parseFloat($('#harga-jual-aktual').val()).toFixed(2) - parseFloat($(
+                '#hpp-aktual').val()).toFixed(2)));
         }
     </script>
 @endsection

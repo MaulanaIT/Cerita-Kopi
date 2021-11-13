@@ -7,14 +7,14 @@
     </div>
     <div class="overflow-auto ps-3">
         <ul>
+            <div class="list-title">Dashboard</div>
+            <li class="list">
+                <a href="/dashboard" class="col fw-bold text-decoration-none text-white">
+                    <i class="icon fas fa-boxes text-white"></i>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
             @if (auth()->user()->role == 'Owner')
-                <div class="list-title">Dashboard</div>
-                <li class="list">
-                    <a href="/dashboard" class="col fw-bold text-decoration-none text-white">
-                        <i class="icon fas fa-boxes text-white"></i>
-                        <span class="title">Dashboard</span>
-                    </a>
-                </li>
                 <div class="list-title">Master</div>
                 <li class="list">
                     <a href="/master/user" class="col fw-bold text-decoration-none text-white">

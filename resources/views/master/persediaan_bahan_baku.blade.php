@@ -124,6 +124,9 @@
                 },
                 success: function(response) {
                     if (response.code == 200) {
+                        $('#harga-' + kodeItem).html($('#edit-harga-' + kodeItem).val());
+                        $('#jumlah-per-pack-' + kodeItem).html($('#edit-jumlah-per-pack-' + kodeItem).val());
+                        $('#satuan-per-pack-' + kodeItem).html($('#edit-satuan-per-pack-' + kodeItem).val());
                         $('#stok-minimal-' + kodeItem).html($('#edit-stok-minimal-' + kodeItem).val());
                         $('#stok-' + kodeItem).html($('#edit-stok-' + kodeItem).val());
                         $('#tanggal-expired-' + kodeItem).html(dateFormat($('#edit-tanggal-expired-' + kodeItem).val()));
