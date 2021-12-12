@@ -30,7 +30,7 @@ class AuthController extends Controller
     public function login(Request $request) {
         Auth::attempt([
             'name' => $request->input('username'), 
-            'email' => $request->input('email'), 
+            // 'email' => $request->input('email'), 
             'password' => $request->input('password')
         ]);
 
@@ -42,14 +42,14 @@ class AuthController extends Controller
     }
 
     public function store(Request $request) {
-        $check = AuthModel::where('email', $request->input('email'))->get();
+        $check = AuthModel::where('name', $request->input('username'))->get();
 
         if (count($check) > 0) {
             $code = 407;
         } else {
             $register = AuthModel::create([
                 'name' => $request->input('username'),
-                'email' => $request->input('email'),
+                // 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
                 'role' => $request->input('role')
             ]);
@@ -67,7 +67,7 @@ class AuthController extends Controller
     public function update(Request $request) {
         AuthModel::where('id', $request->input('id'))->update([
             'name' => $request->input('name'),
-            'email' => $request->input('email'),
+            // 'email' => $request->input('email'),
             'password' => $request->input('password'),
             'role' => $request->input('role')
         ]);

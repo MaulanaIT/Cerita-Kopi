@@ -59,7 +59,7 @@
                                             style="border-radius: 0px 24px 24px 0px;" placeholder="Username"
                                             maxlength="50" required>
                                     </div>
-                                    <div class="input-group py-1 py-lg-2">
+                                    {{-- <div class="input-group py-1 py-lg-2">
                                         <label for="email"
                                             class="bg-white col-form-label input-group-text p-lg-3 text-secondary"
                                             style="border-radius: 24px 0px 0px 24px;"><i
@@ -67,7 +67,7 @@
                                         <input type="email" id="email" name="email" class="form-control"
                                             style="border-radius: 0px 24px 24px 0px;" placeholder="Email"
                                             maxlength="100" required>
-                                    </div>
+                                    </div> --}}
                                     <div class="input-group py-1 py-lg-2">
                                         <label for="password"
                                             class="bg-white col-form-label input-group-text p-lg-3 text-secondary"
@@ -102,7 +102,7 @@
             type: 'POST',
             data: {
                 name: $('#username').val(),
-                email: $('#email').val(),
+                // email: $('#email').val(),
                 password: $('#password').val(),
                 _token: $('meta[name="csrf-token"]').attr('content')
             },

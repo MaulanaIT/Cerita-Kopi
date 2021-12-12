@@ -14,8 +14,8 @@
                             @csrf
                             <label for="username" class="col-form-label">Username</label>
                             <input type="text" id="username" name="username" class="form-control" maxlength="255" required>
-                            <label for="email" class="col-form-label">Email</label>
-                            <input type="email" id="email" name="email" class="form-control" maxlength="255" required>
+                            {{-- <label for="email" class="col-form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" maxlength="255" required> --}}
                             <label for="password" class="col-form-label">Password</label>
                             <input type="password" id="password" name="password" class="form-control" maxlength="255"
                                 required>
@@ -43,7 +43,7 @@
                 <tr>
                     <th>No.</th>
                     <th>Username</th>
-                    <th>Email</th>
+                    {{-- <th>Email</th> --}}
                     <th>Password</th>
                     <th>Role</th>
                     @foreach ($data_user as $data)
@@ -68,12 +68,12 @@
                                         name="edit-username-{{ $data->id }}" class="d-none form-control"
                                         value="{{ $data->name }}" maxlength="255" required>
                                 </td>
-                                <td>
+                                {{-- <td>
                                     <div id="data-email-{{ $data->id }}">{{ $data->email }}</div>
                                     <input type="email" id="edit-email-{{ $data->id }}"
                                         name="edit-email-{{ $data->id }}" class="d-none form-control"
                                         value="{{ $data->email }}" maxlength="255" required>
-                                </td>
+                                </td> --}}
                                 <td class="text-center">
                                     <div id="data-password-{{ $data->id }}" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 150px;">{{ $data->password }}</div>
                                     <input type="password" id="edit-password-{{ $data->id }}"
@@ -100,14 +100,14 @@
                                 </td>
                                 <td class="text-center text-nowrap">
                                     <button id="terapkan-{{ $data->id }}" class="btn btn-success d-none px-3"
-                                        onclick="terapkanData('{{ $data->id }}')"><i
+                                        onclick="terapkanData({{ $data->id }})"><i
                                             class="fas fa-check"></i>&ensp;Terapkan</button>
-                                    <a id="ubah-{{ $data->id }}" class="btn btn-warning px-3"
-                                        onclick="ubahData('{{ $data->id }}')"><i
-                                            class="fas fa-edit"></i>&ensp;Ubah</a>
-                                    <a id="hapus-{{ $data->id }}" class="btn btn-danger px-3"
-                                        onclick="hapusData('{{ $data->id }}')"><i
-                                            class="fas fa-trash"></i>&ensp;Hapus</a>
+                                    <button id="ubah-{{ $data->id }}" class="btn btn-warning px-3"
+                                        onclick="ubahData({{ $data->id }})"><i
+                                            class="fas fa-edit"></i>&ensp;Ubah</button>
+                                    <button id="hapus-{{ $data->id }}" class="btn btn-danger px-3"
+                                        onclick="hapusData({{ $data->id }})"><i
+                                            class="fas fa-trash"></i>&ensp;Hapus</button>
                                 </td>
                             </tr>
                         @else
@@ -116,9 +116,9 @@
                                 <td>
                                     <div id="data-username-{{ $data->id }}">{{ $data->name }}</div>
                                 </td>
-                                <td>
+                                {{-- <td>
                                     <div id="data-email-{{ $data->id }}">{{ $data->email }}</div>
-                                </td>
+                                </td> --}}
                                 <td class="text-center">
                                     <div id="data-password-{{ $data->id }}" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 150px;">{{ $data->password }}</div>
                                 </td>
@@ -138,12 +138,12 @@
     <script>
         function ubahData(id) {
             $('#data-username-' + id).addClass('d-none');
-            $('#data-email-' + id).addClass('d-none');
+            // $('#data-email-' + id).addClass('d-none');
             $('#data-password-' + id).addClass('d-none');
             $('#data-role-' + id).addClass('d-none');
 
             $('#edit-username-' + id).removeClass('d-none');
-            $('#edit-email-' + id).removeClass('d-none');
+            // $('#edit-email-' + id).removeClass('d-none');
             $('#edit-password-' + id).removeClass('d-none');
             $('#edit-role-' + id).removeClass('d-none');
 
@@ -157,7 +157,7 @@
                 type: 'POST',
                 data: {
                     name: $('#username').val(),
-                    email: $('#email').val(),
+                    // email: $('#email').val(),
                     password: $('#password').val(),
                     role: $('#role').val(),
                     _token: $('meta[name="csrf-token"]').attr('content')
@@ -181,7 +181,7 @@
                 data: {
                     id: id,
                     name: $('#edit-username-' + id).val(),
-                    email: $('#edit-email-' + id).val(),
+                    // email: $('#edit-email-' + id).val(),
                     password: $('#edit-password-' + id).val(),
                     role: $('#edit-role-' + id).val(),
                     _token: $('meta[name="csrf-token"]').attr('content')
@@ -189,18 +189,18 @@
                 success: function(response) {
                     if (response.code == 200) {
                         $('#data-username-' + id).html($('#edit-username-' + id).val());
-                        $('#data-email-' + id).html($('#edit-email-' + id).val());
+                        // $('#data-email-' + id).html($('#edit-email-' + id).val());
                         $('#data-password-' + id).html($('#edit-password-' + id).val());
                         $('#data-role-' + id).html($('#edit-role-' + id).val());
 
 
                         $('#edit-username-' + id).addClass('d-none');
-                        $('#edit-email-' + id).addClass('d-none');
+                        // $('#edit-email-' + id).addClass('d-none');
                         $('#edit-password-' + id).addClass('d-none');
                         $('#edit-role-' + id).addClass('d-none');
 
                         $('#data-username-' + id).removeClass('d-none');
-                        $('#data-email-' + id).removeClass('d-none');
+                        // $('#data-email-' + id).removeClass('d-none');
                         $('#data-password-' + id).removeClass('d-none');
                         $('#data-role-' + id).removeClass('d-none');
 
@@ -217,7 +217,7 @@
                 type: 'POST',
                 data: {
                     _token: $('meta[name="csrf-token"]').attr('content')
-                }
+                },
                 success: function(response) {
                     if (response.code == 200) {
                         location.reload();

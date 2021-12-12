@@ -15,7 +15,7 @@ class AuthModel extends Authenticatable
 
     protected $fillable = [
         'name',
-        'email',
+        // 'email',
         'password',
         'role'
     ];
